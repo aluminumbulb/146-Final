@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BTPriorityQueue : MonoBehaviour
+public class BTPriorityQueue
 {
     List<BTNode> pq;
     
