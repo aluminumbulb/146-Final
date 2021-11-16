@@ -3,41 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+//Basically a template for us to pass around functions
+public delegate bool checkDelegate(); //sets up the form of the delegate
+public delegate bool actionDelegate();
+
+/// <summary>
+/// This is the script that will hold the primary behavior tree implementations
+/// So basiclly make changes here
+/// </summary>
 public class BehaviorTree : MonoBehaviour
 {
-    //Fill this with whatever function you want to use to make a check
-    //It seems like once passed in, that value is safe in the new object!
-    checkDelegate testDelegator;
-
+    GameState state;
+    BTSelector root;
     // Start is called before the first frame update
     void Start()
     {
-        testDelegator = somethin;
-        BTPriorityQueue testQ = new BTPriorityQueue();
-        testDelegator = somethin;
-        BTCheck micCheck = new BTCheck(testDelegator);
-        testDelegator = somethinElse;
-        BTCheck ikeCheck = new BTCheck(testDelegator);
+        state = FindObjectOfType<GameState>();
+        root = new BTSelector();
 
-        testQ.push(micCheck);
-        testQ.push(ikeCheck);
-
-        foreach(BTNode node in testQ.getPQ())
-        {
-            node.execute();
-        }
+        root.pushNode(new BTCheck(somethin));
+        root.pushNode(new BTAction(somethinElse));
+        root.execute();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    /// <summary>
+    /// Example function that follows format of delegates
+    /// </summary>
+    /// <returns>
+    /// True/False depending on the result of the function
+    /// </returns>
     public bool somethin()
     {
         Debug.Log("Holy Shit I worked");
-        return true;
+        return false;
     }
 
     public bool somethinElse()
