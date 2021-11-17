@@ -20,9 +20,8 @@ public class BehaviorTree : MonoBehaviour
     {
         state = FindObjectOfType<GameState>();
         root = new BTSelector();
-
-        root.pushNode(new BTCheck(somethin));
-        root.pushNode(new BTAction(somethinElse));
+        root.pushNode(new BTStaticAction(somethinElse));
+        root.pushNode(new BTStaticCheck(somethin));
         root.execute();
     }
 
@@ -34,13 +33,13 @@ public class BehaviorTree : MonoBehaviour
     /// </returns>
     public bool somethin()
     {
-        Debug.Log("Holy Shit I worked");
-        return false;
+        Debug.Log("I only tell truths");
+        return true;
     }
 
     public bool somethinElse()
     {
-        Debug.Log("TAKE A GOOD LOOK SUNNY ITS ABOUT TO HAPPEN AGAIN");
+        Debug.Log("I only tell falsehoods");
         return false;
     }
 }

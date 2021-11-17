@@ -40,7 +40,7 @@ public class BTPriorityQueue
     public void reorganize()
     {
         //Taken from: https://answers.unity.com/questions/677070/sorting-a-list-linq.html
-        pq.Sort((e1, e2) => e1.priority.CompareTo(e2.priority));
+        pq.Sort((e1, e2) => e2.priority.CompareTo(e1.priority));
     }
 }
 
