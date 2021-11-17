@@ -22,7 +22,7 @@ public class BTNode
     /// The amount the node's priority will change,
     /// note that it is Addititve and that it can go negative
     /// </param>
-    public void updatePriority(float priDelt)
+    void updatePriority(float priDelt)
     {
         priority += priDelt;
         if (myQ != null)
@@ -30,6 +30,20 @@ public class BTNode
             myQ.reorganize();
         }
     }
+
+    //============This is hopefully where we're gunna make the magic happen=======================
+    protected void trainingFunction(bool success)
+    {
+        if (success)
+        {
+            updatePriority(1);
+        }
+        else
+        {
+            updatePriority(-1);
+        }
+    }
+    //=============================================================================================
 }
 
 public class BTAction : BTNode
@@ -43,8 +57,9 @@ public class BTAction : BTNode
 
     public override bool execute()
     {
-        //By my best estimate, this is where updating dependancies should go.
-        return del();
+        bool response = del();//Perform the check
+        base.trainingFunction(response);//update priority
+        return response;
     }
 }
 
@@ -59,7 +74,42 @@ public class BTCheck : BTNode
 
     public override bool execute()
     {
-        //By my best estimate, this is where updating dependancies should go.
+        bool response = del();//Perform the check
+        base.trainingFunction(response);//update priority
+        return response;
+    }
+}
+
+/// <summary>
+/// Similar to actions but they don't change their priority
+/// The idea is to be grouped together in branch structures
+/// </summary>
+public class BTStaticAction : BTNode
+{
+    actionDelegate del;
+
+    public BTStaticAction(actionDelegate del)
+    {
+        this.del = del;
+    }
+
+    public override bool execute()
+    {
+        return del();
+    }
+}
+
+public class BTStaticCheck : BTNode
+{
+    checkDelegate del;
+
+    public BTStaticCheck(checkDelegate del)
+    {
+        this.del = del;
+    }
+
+    public override bool execute()
+    {
         return del();
     }
 }
@@ -74,17 +124,21 @@ public class BTSelector : BTNode
 
     public override bool execute()
     {
+        bool response = false;//Perform the check
+      
         //Iterate through every node in order
-        foreach(BTNode node in btq.getPQ())
+        foreach (BTNode node in btq.getPQ())
         {
             //Attempt to execute the underlying node
             //return true as soon as a selected node has succeeded
             if (node.execute())
             {
-                return true;
+                response = true;
+                break;
             }
         }
-        return false;
+        base.trainingFunction(response);//update priority
+        return response;
     }
 
     public void pushNode(BTNode node)
@@ -103,6 +157,7 @@ public class BTSequence : BTNode
 
     public override bool execute()
     {
+        bool response = false;//Perform the check
         //Iterate through every node in order
         foreach (BTNode node in btq.getPQ())
         {
@@ -110,9 +165,20 @@ public class BTSequence : BTNode
             //return true as soon as a selected node has succeeded
             if (!node.execute())
             {
-                return false;
+                response = true;
+                break;
             }
         }
-        return false;
+        base.trainingFunction(response);//update priority
+        return response;
     }
+
+    public void pushNode(BTNode node)
+    {
+        btq.push(node);
+    }
+
+    //Static Branch structures could be used in the same way they're used for leafs,
+    //but I'd like to avoid that unless needed. (Just fill one with all static leafs
+    //to achieve a similar affect
 }
