@@ -9,6 +9,13 @@ using UnityEngine;
 /// </summary>
 public class GameState : MonoBehaviour
 {
+    public Transform heroPos;
+    public Transform bossPos;
+    public float distBtwn;
+    public float bossHealth;
+    public float lightDmg = 10;
+    public float heavyDmg = 20;
+
     // Start is called before the first frame update
     void Start()
     {

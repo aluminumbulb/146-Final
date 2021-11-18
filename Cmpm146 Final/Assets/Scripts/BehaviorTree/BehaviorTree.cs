@@ -15,13 +15,29 @@ public class BehaviorTree : MonoBehaviour
 {
     GameState state;
     BTSelector root;
+
     // Start is called before the first frame update
     void Start()
     {
         state = FindObjectOfType<GameState>();
         root = new BTSelector();
-        root.pushNode(new BTStaticAction(somethinElse));
-        root.pushNode(new BTStaticCheck(somethin));
+
+        BTSequence lightAttackBranch = new BTSequence();
+        lightAttackBranch.pushNode(new BTCheck(attackCheck));
+        lightAttackBranch.pushNode(new BTAction(lightAttack));
+        root.pushNode(lightAttackBranch);
+
+        BTSequence heavyAttackBranch = new BTSequence();
+        heavyAttackBranch.pushNode(new BTCheck(attackCheck));
+        heavyAttackBranch.pushNode(new BTAction(heavyAttack));
+        root.pushNode(heavyAttackBranch);
+
+        BTSequence dodgeBranch = new BTSequence();
+        dodgeBranch.pushNode(new BTCheck(bossAttacked));
+        dodgeBranch.pushNode(new BTCheck(dodgeCheck));
+        dodgeBranch.pushNode(new BTAction(moveToSafety));
+        root.pushNode(dodgeBranch);
+
         root.execute();
     }
 
@@ -41,5 +57,59 @@ public class BehaviorTree : MonoBehaviour
     {
         Debug.Log("I only tell falsehoods");
         return false;
+    }
+
+    /*
+     ******************CHECKS***********************
+     */
+
+    // attackCheck to see if hero in range for attack
+    public bool attackCheck()
+    {
+        state.distBtwn = Mathf.Abs(Vector2.Distance(state.heroPos.position, state.bossPos.position));
+        return state.distBtwn == 1f;
+    }
+
+    // check to see if boss just attacked
+    public bool bossAttacked()
+    {
+        // did boss just launch an attack?
+        return false;
+    }
+
+    // check to see if hero's square is in danger
+    public bool dodgeCheck()
+    {
+        // get square player is on
+        // is square about to be covered by bullet?
+        return false;
+    }
+
+    /*
+     ******************ACTIONS**********************
+     */
+
+    // lightAttack hero stab boss action
+    public bool lightAttack()
+    {
+        // play light swing anim
+        state.bossHealth -= state.lightDmg;
+        return true;
+    }
+
+    // heavyAttack hero big swing boss action
+    public bool heavyAttack()
+    {
+        // play heavy swing anim
+        state.bossHealth -= state.heavyDmg;
+        return true;
+    }
+
+    // move hero out of danger
+    public bool moveToSafety()
+    {
+        // find closest square that is not under attack
+        // move player to that square
+        return true;
     }
 }
