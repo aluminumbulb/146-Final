@@ -8,6 +8,7 @@ public class BossAttacks : MonoBehaviour
     public Transform swipeLeftPoint;
     public Transform centerPoint;
     public LayerMask enemyLayers;
+    public int beamLength = 8;
     // Update is called once per frame
     void Update()
     {
@@ -78,14 +79,14 @@ public class BossAttacks : MonoBehaviour
         //Play animation 
 
         //collect the objects hit
-        Collider2D[] hitHero = Physics2D.OverlapBoxAll(centerPoint.position, new Vector2(8, 1), 0, enemyLayers);
+        Collider2D[] hitHero = Physics2D.OverlapBoxAll(centerPoint.position, new Vector2(beamLength, 1), 0, enemyLayers);
         //send meesage to Hero/ hit the Hero
         foreach (Collider2D Hero in hitHero)
         {
             Debug.Log("hit " + Hero.name + " with Beams horizontal");
         }
 
-        hitHero = Physics2D.OverlapBoxAll(centerPoint.position, new Vector2(1, 8), 0, enemyLayers);
+        hitHero = Physics2D.OverlapBoxAll(centerPoint.position, new Vector2(1, beamLength), 0, enemyLayers);
 
         foreach (Collider2D Hero in hitHero)
         {
@@ -113,8 +114,8 @@ public class BossAttacks : MonoBehaviour
             Gizmos.color = Color.blue;
             Gizmos.DrawWireCube(centerPoint.position, new Vector3(4, 4, 1));
             Gizmos.color = Color.green;
-            Gizmos.DrawWireCube(centerPoint.position, new Vector3(1, 8, 1));
-            Gizmos.DrawWireCube(centerPoint.position, new Vector3(8, 1, 1));
+            Gizmos.DrawWireCube(centerPoint.position, new Vector3(1, beamLength, 1));
+            Gizmos.DrawWireCube(centerPoint.position, new Vector3(beamLength, 1, 1));
         }
         
 
