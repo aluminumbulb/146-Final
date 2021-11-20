@@ -8,7 +8,9 @@ public class BTNode
 {
     public float priority = 0;
     public BTPriorityQueue myQ = null;
-
+    //These floats represent the weights on the priority given to these
+    //attributes, for the nodes
+    protected float distW;
     //Basic execute should pretty much always be available to any kind of node
     public virtual bool execute()
     {
@@ -31,17 +33,13 @@ public class BTNode
         }
     }
 
-    //============This is hopefully where we're gunna make the magic happen=======================
-    protected void trainingFunction(bool success)
+    //============This is hopefully where we're gunna make the magic happen========================
+    //This training function should update priority based on a sum of all weights listed above
+    //It will then use this and replace priority with this function.
+    //For the sake of cleanness, it may be best to keep these checks as their own functions elsewhere.
+    protected void trainingFunction()
     {
-        if (success)
-        {
-            updatePriority(1);
-        }
-        else
-        {
-            updatePriority(-1);
-        }
+        priority = distW;//+whatever else should factor into priority
     }
     //=============================================================================================
 }
@@ -50,15 +48,16 @@ public class BTAction : BTNode
 {
     actionDelegate del;
 
-    public BTAction(actionDelegate del)
+    public BTAction(actionDelegate del, float distW = 0)
     {
         this.del = del;
+        base.distW = distW;
     }
 
     public override bool execute()
     {
         bool response = del();//Perform the check
-        base.trainingFunction(response);//update priority
+        base.trainingFunction();//update priority
         return response;
     }
 }
@@ -70,12 +69,13 @@ public class BTCheck : BTNode
     public BTCheck(checkDelegate del)
     {
         this.del = del;
+        base.distW = distW;
     }
 
     public override bool execute()
     {
         bool response = del();//Perform the check
-        base.trainingFunction(response);//update priority
+        base.trainingFunction();//update priority
         return response;
     }
 }
@@ -117,9 +117,10 @@ public class BTStaticCheck : BTNode
 public class BTSelector : BTNode
 {
     BTPriorityQueue btq;
-    public BTSelector()
+    public BTSelector(float distW = 0)
     {
         btq = new BTPriorityQueue();
+        base.distW = distW;
     }
 
     public override bool execute()
@@ -137,7 +138,7 @@ public class BTSelector : BTNode
                 break;
             }
         }
-        base.trainingFunction(response);//update priority
+        base.trainingFunction();//update priority
         return response;
     }
 
@@ -150,9 +151,10 @@ public class BTSelector : BTNode
 public class BTSequence : BTNode
 {
     BTPriorityQueue btq;
-    public BTSequence()
+    public BTSequence(float distW = 0)
     {
         btq = new BTPriorityQueue();
+        base.distW = distW;
     }
 
     public override bool execute()
@@ -169,7 +171,7 @@ public class BTSequence : BTNode
                 break;
             }
         }
-        base.trainingFunction(response);//update priority
+        base.trainingFunction();//update priority
         return response;
     }
 
