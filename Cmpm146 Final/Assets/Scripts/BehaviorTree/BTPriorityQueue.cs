@@ -39,6 +39,10 @@ public class BTPriorityQueue
     /// </summary>
     public void reorganize()
     {
+        foreach(BTNode node in pq)
+        {
+            node.trainingFunction();
+        }
         //Taken from: https://answers.unity.com/questions/677070/sorting-a-list-linq.html
         pq.Sort((e1, e2) => e2.priority.CompareTo(e1.priority));
     }

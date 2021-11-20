@@ -39,7 +39,7 @@ public class BTNode
     //This training function should update priority based on a sum of all weights listed above
     //It will then use this and replace priority with this function.
     //For the sake of cleanness, it may be best to keep these checks as their own functions elsewhere.
-    protected void trainingFunction()
+    public void trainingFunction()
     {
         float currDist = gs.distBtwn * distW;
         priority = currDist;//+whatever else should factor into priority
@@ -61,7 +61,7 @@ public class BTAction : BTNode
     public override bool execute()
     {
         bool response = del();//Perform the check
-        base.trainingFunction();//update priority
+        //base.trainingFunction();//update priority
         return response;
     }
 }
@@ -80,11 +80,85 @@ public class BTCheck : BTNode
     public override bool execute()
     {
         bool response = del();//Perform the check
-        base.trainingFunction();//update priority
+        //base.trainingFunction();//update priority
         return response;
     }
 }
 
+public class BTSelector : BTNode
+{
+    BTPriorityQueue btq;
+    public BTSelector(GameState state, float distW = 0)
+    {
+        btq = new BTPriorityQueue();
+        base.distW = distW;
+        base.gs = state;
+    }
+
+    public override bool execute()
+    {
+        bool response = false;//Perform the check
+        btq.reorganize();//orders the sub-nodes before going through them
+        //Iterate through every node in order
+        foreach (BTNode node in btq.getPQ())
+        {
+            //Attempt to execute the underlying node
+            //return true as soon as a selected node has succeeded
+            if (node.execute())
+            {
+                response = true;
+                break;
+            }
+        }
+        //base.trainingFunction();//update priority
+        return response;
+    }
+
+    public void pushNode(BTNode node)
+    {
+        btq.push(node);
+    }
+}
+
+public class BTSequence : BTNode
+{
+    BTPriorityQueue btq;
+    public BTSequence(GameState state, float distW = 0)
+    {
+        btq = new BTPriorityQueue();
+        base.gs = state;
+        base.distW = distW;
+    }
+
+    public override bool execute()
+    {
+        bool response = false;//Perform the check
+        btq.reorganize();//orders the sub-nodes before going through them
+        //Iterate through every node in order
+        foreach (BTNode node in btq.getPQ())
+        {
+            //Attempt to execute the underlying node
+            //return true as soon as a selected node has succeeded
+            if (!node.execute())
+            {
+                response = true;
+                break;
+            }
+        }
+        //base.trainingFunction();//update priority
+        return response;
+    }
+
+    public void pushNode(BTNode node)
+    {
+        btq.push(node);
+    }
+
+    //Static Branch structures could be used in the same way they're used for leaves,
+    //but I'd like to avoid that unless needed. (Just fill one with all static leafs
+    //to achieve a similar affect
+
+    /*
 /// <summary>
 /// Similar to actions but they don't change their priority
 /// The idea is to be grouped together in branch structures
@@ -118,77 +192,5 @@ public class BTStaticCheck : BTNode
         return del();
     }
 }
-
-public class BTSelector : BTNode
-{
-    BTPriorityQueue btq;
-    public BTSelector(GameState state, float distW = 0)
-    {
-        btq = new BTPriorityQueue();
-        base.distW = distW;
-        base.gs = state;
-    }
-
-    public override bool execute()
-    {
-        bool response = false;//Perform the check
-      
-        //Iterate through every node in order
-        foreach (BTNode node in btq.getPQ())
-        {
-            //Attempt to execute the underlying node
-            //return true as soon as a selected node has succeeded
-            if (node.execute())
-            {
-                response = true;
-                break;
-            }
-        }
-        base.trainingFunction();//update priority
-        return response;
-    }
-
-    public void pushNode(BTNode node)
-    {
-        btq.push(node);
-    }
-}
-
-public class BTSequence : BTNode
-{
-    BTPriorityQueue btq;
-    public BTSequence(GameState state, float distW = 0)
-    {
-        btq = new BTPriorityQueue();
-        base.gs = state;
-        base.distW = distW;
-       
-    }
-
-    public override bool execute()
-    {
-        bool response = false;//Perform the check
-        //Iterate through every node in order
-        foreach (BTNode node in btq.getPQ())
-        {
-            //Attempt to execute the underlying node
-            //return true as soon as a selected node has succeeded
-            if (!node.execute())
-            {
-                response = true;
-                break;
-            }
-        }
-        base.trainingFunction();//update priority
-        return response;
-    }
-
-    public void pushNode(BTNode node)
-    {
-        btq.push(node);
-    }
-
-    //Static Branch structures could be used in the same way they're used for leafs,
-    //but I'd like to avoid that unless needed. (Just fill one with all static leafs
-    //to achieve a similar affect
+*/
 }
