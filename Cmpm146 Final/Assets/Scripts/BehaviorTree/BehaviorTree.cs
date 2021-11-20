@@ -20,22 +20,22 @@ public class BehaviorTree : MonoBehaviour
     void Start()
     {
         state = FindObjectOfType<GameState>();
-        root = new BTSelector();
+        root = new BTSelector(state);
 
-        BTSequence lightAttackBranch = new BTSequence();
-        lightAttackBranch.pushNode(new BTCheck(attackCheck));
-        lightAttackBranch.pushNode(new BTAction(lightAttack));
+        BTSequence lightAttackBranch = new BTSequence(state);
+        lightAttackBranch.pushNode(new BTCheck(attackCheck, state));
+        lightAttackBranch.pushNode(new BTAction(lightAttack, state));
         root.pushNode(lightAttackBranch);
 
-        BTSequence heavyAttackBranch = new BTSequence();
-        heavyAttackBranch.pushNode(new BTCheck(attackCheck));
-        heavyAttackBranch.pushNode(new BTAction(heavyAttack));
+        BTSequence heavyAttackBranch = new BTSequence(state);
+        heavyAttackBranch.pushNode(new BTCheck(attackCheck, state));
+        heavyAttackBranch.pushNode(new BTAction(heavyAttack, state));
         root.pushNode(heavyAttackBranch);
 
-        BTSequence dodgeBranch = new BTSequence();
-        dodgeBranch.pushNode(new BTCheck(bossAttacked));
-        dodgeBranch.pushNode(new BTCheck(dodgeCheck));
-        dodgeBranch.pushNode(new BTAction(moveToSafety));
+        BTSequence dodgeBranch = new BTSequence(state);
+        dodgeBranch.pushNode(new BTCheck(bossAttacked, state));
+        dodgeBranch.pushNode(new BTCheck(dodgeCheck, state));
+        dodgeBranch.pushNode(new BTAction(moveToSafety, state));
         root.pushNode(dodgeBranch);
 
         root.execute();
