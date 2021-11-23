@@ -38,8 +38,6 @@ public class BehaviorTree : MonoBehaviour
         dodgeBranch.pushNode(new BTCheck(dodgeCheck, state));
         dodgeBranch.pushNode(new BTAction(moveToSafety, state));
         root.pushNode(dodgeBranch);
-
-        
     }
 
     public void execute()

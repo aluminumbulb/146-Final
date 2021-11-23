@@ -10,10 +10,10 @@ using UnityEngine;
 public class GameState : MonoBehaviour
 {
     public Transform hero, boss;
-    private Vector3 currHeroPos, prevHeroPos;
+    
     public float distBtwn;
     public float bossHealth;
-    private float prevBossHealth, currBossHealth;
+    
     public float lightDmg = 10;
     public float heavyDmg = 20;
     private BehaviorTree bt;
@@ -25,10 +25,6 @@ public class GameState : MonoBehaviour
     public bool inputPlaced = false;
     void Start()
     {
-        //Initializng values
-        currHeroPos = prevHeroPos = hero.position;
-        currBossHealth = prevBossHealth = bossHealth;
-
         distBtwn = Vector3.Distance(hero.position, boss.position);
 
         bt = FindObjectOfType<BehaviorTree>();
@@ -69,6 +65,7 @@ public class GameState : MonoBehaviour
             yield return null;
         }
         Debug.Log("Exited pipe");
+        StopAllCoroutines();
     }
 
     //A function to hold all of our "game over" conditions
@@ -80,32 +77,5 @@ public class GameState : MonoBehaviour
         }
 
         return false;
-    }
-
-    //We need to be certain this only gets called once per tree check
-    void UpdateStateValues()
-    {
-        prevHeroPos = currHeroPos;
-        currHeroPos = hero.position;
-
-        prevBossHealth = currBossHealth;
-        currBossHealth = bossHealth;
-
-        distBtwn = Vector3.Distance(hero.position, boss.position);
-    }
-
-    public float getDeltX()
-    {
-        return currHeroPos.x - prevHeroPos.y;
-    }
-
-    public float getDeltY()
-    {
-        return currHeroPos.x - prevHeroPos.y;
-    }
-
-    public float getDeltHealth()
-    {
-        return currBossHealth - prevBossHealth;
     }
 }
