@@ -19,25 +19,25 @@ public class BossAttacks : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            SwipeRight();
+            SwipeRight("Hero");
         }
 
         if (Input.GetKeyDown(KeyCode.X))
         {
-            SwipeLeft();
+            SwipeLeft("Hero");
         }
 
         if (Input.GetKeyDown(KeyCode.C))
         {
-            Beams();
+            Beams("Hero");
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            AOE();
+            AOE("Hero");
         }
     }
-    void SwipeRight()
+    public bool SwipeRight(string obj)
     {
         //Play animation 
 
@@ -49,9 +49,18 @@ public class BossAttacks : MonoBehaviour
         {
             Debug.Log("hit " + Hero.name + " with Swipe Right");
         }
+        
+        foreach (Collider2D Hero in hitHero)
+        {
+            if(Hero.name == obj)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
-    void SwipeLeft()
+    public bool SwipeLeft(string obj)
     {
         //Play animation 
 
@@ -63,9 +72,18 @@ public class BossAttacks : MonoBehaviour
         {
             Debug.Log("hit " + Hero.name + " with Swipe Left");
         }
+
+        foreach (Collider2D Hero in hitHero)
+        {
+            if (Hero.name == obj)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
-    void AOE()
+    public bool AOE(string obj)
     {
         //Play animation 
 
@@ -77,9 +95,18 @@ public class BossAttacks : MonoBehaviour
         {
             Debug.Log("hit " + Hero.name + " with AOE");
         }
+
+        foreach (Collider2D Hero in hitHero)
+        {
+            if (Hero.name == obj)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
-    void Beams()
+    public bool Beams(string obj)
     {
         //Play animation 
 
@@ -91,12 +118,29 @@ public class BossAttacks : MonoBehaviour
             Debug.Log("hit " + Hero.name + " with Beams horizontal");
         }
 
+        foreach (Collider2D Hero in hitHero)
+        {
+            if (Hero.name == obj)
+            {
+                return true;
+            }
+        }
+
         hitHero = Physics2D.OverlapBoxAll(centerPoint.position, new Vector2(1, beamLength), 0, enemyLayers);
 
         foreach (Collider2D Hero in hitHero)
         {
             Debug.Log("hit " + Hero.name + " with Beams vertical");
         }
+
+        foreach (Collider2D Hero in hitHero)
+        {
+            if (Hero.name == obj)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     //This is called to draw attack boxes when the boss is selected

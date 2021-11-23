@@ -13,7 +13,8 @@ public class GameState : MonoBehaviour
     
     public float distBtwn;
     public float bossHealth;
-    
+    BossAttacks bossAtk;
+    private float prevBossHealth, currBossHealth;
     public float lightDmg = 10;
     public float heavyDmg = 20;
     private BehaviorTree bt;
@@ -25,11 +26,18 @@ public class GameState : MonoBehaviour
     public bool inputPlaced = false;
     void Start()
     {
+        //Initializng values
+        bossAtk = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossAttacks>();
+        currHeroPos = prevHeroPos = hero.position;
+        currBossHealth = prevBossHealth = bossHealth;
+
         distBtwn = Vector3.Distance(hero.position, boss.position);
 
         bt = FindObjectOfType<BehaviorTree>();
 
         StartCoroutine(turnOrder());
+        Debug.Log("Hero was hit by Beams: " + BossAtkCheck("Hero", "Beams"));
+        Debug.Log("Hero was hit by AOE: " + BossAtkCheck("Hero", "AOE"));
     }
 
     //This should basically enforce turn order
@@ -66,6 +74,29 @@ public class GameState : MonoBehaviour
         }
         Debug.Log("Exited pipe");
         StopAllCoroutines();
+    }
+
+    bool BossAtkCheck(string obj, string atk)
+    {
+        //check which atk is being used and get the hitObjs from it
+        if (atk == "SwipeRight") 
+        {
+            return bossAtk.SwipeRight(obj);
+        } 
+        else if (atk == "SwipeLeft") 
+        {
+            return bossAtk.SwipeLeft(obj);
+        }
+        else if(atk == "AOE") 
+        {
+            return bossAtk.AOE(obj);
+        } 
+        else if (atk == "Beams") 
+        {
+            return bossAtk.Beams(obj);
+        }
+        //return false if atk doesnt exist
+        return false;
     }
 
     //A function to hold all of our "game over" conditions
