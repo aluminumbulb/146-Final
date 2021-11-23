@@ -15,6 +15,7 @@ public class BehaviorTree : MonoBehaviour
 {
     GameState state;
     BTSelector root;
+    public bool ready = false;//indicates if a tree has made a decision
 
     // Start is called before the first frame update
     void Start()
@@ -38,10 +39,16 @@ public class BehaviorTree : MonoBehaviour
         dodgeBranch.pushNode(new BTAction(moveToSafety, state));
         root.pushNode(dodgeBranch);
 
-        root.execute();
+        
     }
 
-    
+    public void execute()
+    {
+        ready = false;
+        //root.execute(); too nervous to uncomment rn
+        Debug.Log("Executed with Imperiousness");
+        ready = true;
+    }
 
     /// <summary>
     /// Example function that follows format of delegates
@@ -68,7 +75,7 @@ public class BehaviorTree : MonoBehaviour
     // attackCheck to see if hero in range for attack
     public bool attackCheck()
     {
-        state.distBtwn = Mathf.Abs(Vector2.Distance(state.heroPos.position, state.bossPos.position));
+        state.distBtwn = Mathf.Abs(Vector2.Distance(state.hero.position, state.boss.position));
         return state.distBtwn == 1f;
     }
 

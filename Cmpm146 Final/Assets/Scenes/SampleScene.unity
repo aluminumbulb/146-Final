@@ -378,6 +378,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6469890269588359035, guid: 5ea3a0489feb01041b9ce5cb7169d299, type: 3}
+      propertyPath: boss
+      value: 
+      objectReference: {fileID: 2043648570}
+    - target: {fileID: 6469890269588359035, guid: 5ea3a0489feb01041b9ce5cb7169d299, type: 3}
+      propertyPath: hero
+      value: 
+      objectReference: {fileID: 1643169834}
+    - target: {fileID: 6469890269588359035, guid: 5ea3a0489feb01041b9ce5cb7169d299, type: 3}
       propertyPath: bossPos
       value: 
       objectReference: {fileID: 1643169834}
@@ -400,7 +408,7 @@ GameObject:
   - component: {fileID: 1643169832}
   - component: {fileID: 1643169835}
   m_Layer: 6
-  m_Name: Player
+  m_Name: Hero
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -571,6 +579,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2436a5c1b94a1ac438174a86b1dbc27f, type: 3}
+--- !u!4 &2043648570 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7521948410892084333, guid: 7eaa772152f5a194bb55d91612db4191, type: 3}
+  m_PrefabInstance: {fileID: 7521948412733459101}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7521948412733459101
 PrefabInstance:
   m_ObjectHideFlags: 0

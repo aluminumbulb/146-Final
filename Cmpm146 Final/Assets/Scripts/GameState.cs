@@ -9,22 +9,103 @@ using UnityEngine;
 /// </summary>
 public class GameState : MonoBehaviour
 {
-    public Transform heroPos;
-    public Transform bossPos;
+    public Transform hero, boss;
+    private Vector3 currHeroPos, prevHeroPos;
     public float distBtwn;
     public float bossHealth;
+    private float prevBossHealth, currBossHealth;
     public float lightDmg = 10;
     public float heavyDmg = 20;
+    private BehaviorTree bt;
 
-    // Start is called before the first frame update
+    //Just shows what state we're in with a little more readability
+    enum turn {BOSS_DECISION, HERO_DECISION, ACTION };
+    turn currTurn = turn.BOSS_DECISION;
+
+    public bool inputPlaced = false;
     void Start()
     {
-        
+        //Initializng values
+        currHeroPos = prevHeroPos = hero.position;
+        currBossHealth = prevBossHealth = bossHealth;
+
+        distBtwn = Vector3.Distance(hero.position, boss.position);
+
+        bt = FindObjectOfType<BehaviorTree>();
+
+        StartCoroutine(turnOrder());
     }
 
-    // Update is called once per frame
-    void Update()
+    //This should basically enforce turn order
+    IEnumerator turnOrder()
     {
-        
+        while(!gameOver())
+        {
+            if (currTurn == turn.BOSS_DECISION)
+            {
+                Debug.Log("Boss Decision Turn");
+                //Wait for user to confirm their input
+                while (!inputPlaced) //This can't be a key down due to timing problems
+                {
+                    inputPlaced = true;//Have some other function do this
+                   yield return null;
+                }
+                currTurn = turn.HERO_DECISION;
+            }
+
+            if(currTurn == turn.HERO_DECISION)
+            {
+                Debug.Log("Hero Decision Turn");
+                bt.execute();
+                currTurn = turn.ACTION;
+            }
+
+            if(currTurn == turn.ACTION)
+            {
+                Debug.Log("Time for Action");
+                //At this phase, we should check the result of the boss' move on the hero
+                currTurn = turn.BOSS_DECISION;
+            }
+            yield return null;
+        }
+        Debug.Log("Exited pipe");
+    }
+
+    //A function to hold all of our "game over" conditions
+    bool gameOver()
+    {
+        if(bossHealth <= 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    //We need to be certain this only gets called once per tree check
+    void UpdateStateValues()
+    {
+        prevHeroPos = currHeroPos;
+        currHeroPos = hero.position;
+
+        prevBossHealth = currBossHealth;
+        currBossHealth = bossHealth;
+
+        distBtwn = Vector3.Distance(hero.position, boss.position);
+    }
+
+    public float getDeltX()
+    {
+        return currHeroPos.x - prevHeroPos.y;
+    }
+
+    public float getDeltY()
+    {
+        return currHeroPos.x - prevHeroPos.y;
+    }
+
+    public float getDeltHealth()
+    {
+        return currBossHealth - prevBossHealth;
     }
 }

@@ -8,12 +8,41 @@ public class BTNode
 {
     public float priority = 0;
     public BTPriorityQueue myQ = null;
-    //These floats represent the weights on the priority given to these
-    //attributes, for the nodes
-    private float distW = 0; //defaults set on instantiation
+    //These floats are used to calculate the average changes for each tracked value
+    float totDeltX = 0, totDeltY = 0, totDeltHealth = 0;
+    float totalUses = 0;
+    public float aveDeltX = 0, aveDeltY = 0, aveDeltHealth = 0;
     protected GameState gs = null;
     //Basic execute should pretty much always be available to any kind of node
-    
+
+    //============This is hopefully where we're gunna make the magic happen========================
+    //This training function should update priority based on a sum of all weights listed above
+    //It will then use this and replace priority with this function.
+    //For the sake of cleanness, it may be best to keep these checks as their own functions elsewhere.
+    public void trainingFunction()
+    {
+        //Updates this nodes priority adjusting values:
+        totalUses++; //increase total uses generally
+        totDeltX += gs.getDeltX();
+        totDeltY += gs.getDeltY();
+        totDeltHealth += gs.getDeltHealth();
+
+        aveDeltX = totDeltX / totalUses;
+        aveDeltY = totDeltY / totalUses;
+        aveDeltHealth = totDeltHealth / totalUses;
+
+        //TODO: Prove directionality and signs
+        float xDiff = gs.boss.position.x - gs.hero.position.x;
+        float yDiff = gs.boss.position.y - gs.hero.position.y;
+
+        //Priority will attempt to minimize all of these values to the best of its ability
+        priority = 
+            Mathf.Abs(xDiff + aveDeltX)
+            + Mathf.Abs(yDiff + aveDeltY) 
+            + Mathf.Abs(gs.bossHealth + aveDeltHealth);
+    }
+    //=============================================================================================
+
     public virtual bool execute()
     {
         return true;
@@ -35,15 +64,7 @@ public class BTNode
         }
     }
 
-    //============This is hopefully where we're gunna make the magic happen========================
-    //This training function should update priority based on a sum of all weights listed above
-    //It will then use this and replace priority with this function.
-    //For the sake of cleanness, it may be best to keep these checks as their own functions elsewhere.
-    public void trainingFunction()
-    {
-        
-    }
-    //=============================================================================================
+
 }
 
 public class BTAction : BTNode
