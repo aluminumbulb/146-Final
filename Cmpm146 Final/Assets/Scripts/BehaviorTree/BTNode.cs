@@ -13,6 +13,8 @@ public class BTNode
     float totalUses = 0;
     public float aveDeltX = 0, aveDeltY = 0, aveDeltHealth = 0;
     protected GameState gs = null;
+
+    BTNode chainPtr = null;
     //Basic execute should pretty much always be available to any kind of node
 
     //============This is hopefully where we're gunna make the magic happen========================
@@ -27,21 +29,44 @@ public class BTNode
         totDeltY += gs.getDeltY();
         totDeltHealth += gs.getDeltHealth();
 
+        //Average used to determine the likely effect of the action
         aveDeltX = totDeltX / totalUses;
         aveDeltY = totDeltY / totalUses;
         aveDeltHealth = totDeltHealth / totalUses;
 
-        //TODO: Prove directionality and signs
+        //unsure about these signs
+
         float xDiff = gs.boss.position.x - gs.hero.position.x;
         float yDiff = gs.boss.position.y - gs.hero.position.y;
 
-        //Priority will attempt to minimize all of these values to the best of its ability
-        priority = 
-            Mathf.Abs(xDiff + aveDeltX)
-            + Mathf.Abs(yDiff + aveDeltY) 
-            + Mathf.Abs(gs.bossHealth + aveDeltHealth);
+        //Priority queue will attempt to maximize all these values
+        priority = transDeltX(xDiff, aveDeltX) + transDeltY(yDiff, aveDeltY) + transDeltHealth(gs.bossHealth,aveDeltHealth);
     }
     //=============================================================================================
+
+    float transDeltX(float xDiff, float aveDeltx)
+    {
+        //The amount that needs to be done, constrained, times the amound it might help
+        //Same signs should maximize the value, while opposing signs will minimize it
+        //(i.e. preferred direction should arise)
+        return sigmoid(xDiff) * aveDeltX;
+    }
+
+    float transDeltY(float yDiff, float aveDeltY)
+    {
+        return sigmoid(yDiff) * aveDeltY;
+    }
+
+    float transDeltHealth(float bossHealth, float aveDeltHealth)
+    {
+        //boss health should pretty much always be priority 1
+        return 1 * aveDeltHealth;
+    }
+
+    float sigmoid(float x)
+    {
+        return 1 / (1 + Mathf.Exp(-x));
+    }
 
     public virtual bool execute()
     {
@@ -63,8 +88,6 @@ public class BTNode
             myQ.reorganize();
         }
     }
-
-
 }
 
 public class BTAction : BTNode
