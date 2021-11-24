@@ -13,21 +13,23 @@ public class GameState : MonoBehaviour
     
     public float distBtwn;
     public float bossHealth;
-    BossAttacks bossAtk;
+    public BossAttacks bossAtk;
+    public Movement heroMove;
     private float prevBossHealth, currBossHealth;
+    private Vector2 prevHeroPos, currHeroPos;
     public float lightDmg = 10;
     public float heavyDmg = 20;
     private BehaviorTree bt;
 
     //Just shows what state we're in with a little more readability
-    enum turn {BOSS_DECISION, HERO_DECISION, ACTION };
-    turn currTurn = turn.BOSS_DECISION;
+    public enum turn {BOSS_DECISION, HERO_DECISION, ACTION };
+    public turn currTurn = turn.BOSS_DECISION;
 
-    public bool inputPlaced = false;
     void Start()
     {
         //Initializng values
-        bossAtk = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossAttacks>();
+        bossAtk = GameObject.FindObjectOfType<BossAttacks>();
+        heroMove = GameObject.FindObjectOfType<Movement>();
         currHeroPos = prevHeroPos = hero.position;
         currBossHealth = prevBossHealth = bossHealth;
 
@@ -49,12 +51,10 @@ public class GameState : MonoBehaviour
             {
                 Debug.Log("Boss Decision Turn");
                 //Wait for user to confirm their input
-                while (!inputPlaced) //This can't be a key down due to timing problems
+                if (bossAtk.inputGiven)
                 {
-                    inputPlaced = true;//Have some other function do this
-                   yield return null;
+                    currTurn = turn.HERO_DECISION;
                 }
-                currTurn = turn.HERO_DECISION;
             }
 
             if(currTurn == turn.HERO_DECISION)
@@ -76,7 +76,7 @@ public class GameState : MonoBehaviour
         StopAllCoroutines();
     }
 
-    bool BossAtkCheck(string obj, string atk)
+    public bool BossAtkCheck(string obj, string atk)
     {
         //check which atk is being used and get the hitObjs from it
         if (atk == "SwipeRight") 
