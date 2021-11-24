@@ -50,11 +50,20 @@ public class GameState : MonoBehaviour
             if (currTurn == turn.BOSS_DECISION)
             {
                 Debug.Log("Boss Decision Turn");
-                //Wait for user to confirm their input
-                if (bossAtk.inputGiven)
+                // Wait for user to confirm their input
+                // this infinite loops, whoops
+                /*
+                bool done = false;
+                while (!done)
                 {
-                    currTurn = turn.HERO_DECISION;
+                    if (bossAtk.inputGiven)
+                    {
+                        done = true;
+                        currTurn = turn.HERO_DECISION;
+                    }
                 }
+                yield return null;
+                */
             }
 
             if(currTurn == turn.HERO_DECISION)
