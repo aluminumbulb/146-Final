@@ -92,7 +92,7 @@ public class BehaviorTree : MonoBehaviour
         // get square player is on
         // is square about to be covered by bullet?
         Debug.Log("DodgeCheck");
-        return state.BossAtkCheck("Hero", state.bossAtk.currAttack);
+        return state.BossAtkCheck("Hero", state.currAttack);
     }
 
     /*
