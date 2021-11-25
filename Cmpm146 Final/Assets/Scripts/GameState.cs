@@ -13,7 +13,7 @@ public class GameState : MonoBehaviour
     
     public float distBtwn;
     public float bossHealth;
-    BossAttacks bossAtk;
+    public BossAttacks bossAtk;
     HeroZones HeroZone;
     public Movement heroMove;
     private float prevBossHealth, currBossHealth;
@@ -21,7 +21,6 @@ public class GameState : MonoBehaviour
     public float lightDmg = 10;
     public float heavyDmg = 20;
     private BehaviorTree bt;
-    public string currAttack;
     //Just shows what state we're in with a little more readability
     public enum turn {BOSS_DECISION, HERO_DECISION, ACTION };
     public turn currTurn = turn.BOSS_DECISION;

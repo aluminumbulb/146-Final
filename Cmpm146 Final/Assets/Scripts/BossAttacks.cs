@@ -14,6 +14,7 @@ public class BossAttacks : MonoBehaviour
     public bool showSwipe = true;
     public bool showBeams = true;
     public bool showAOE = true;
+    public string currAttack;
     public bool inputGiven;
     // Update is called once per frame
     void Update()
