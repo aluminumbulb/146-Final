@@ -14,6 +14,7 @@ public class GameState : MonoBehaviour
     public float distBtwn;
     public float bossHealth;
     BossAttacks bossAtk;
+    HeroZones HeroZone;
     private float prevBossHealth, currBossHealth;
     public float lightDmg = 10;
     public float heavyDmg = 20;
@@ -28,6 +29,7 @@ public class GameState : MonoBehaviour
     {
         //Initializng values
         bossAtk = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossAttacks>();
+        HeroZone = GameObject.FindGameObjectWithTag("Hero").GetComponent<HeroZones>();
         currHeroPos = prevHeroPos = hero.position;
         currBossHealth = prevBossHealth = bossHealth;
 
@@ -38,6 +40,12 @@ public class GameState : MonoBehaviour
         StartCoroutine(turnOrder());
         Debug.Log("Hero was hit by Beams: " + BossAtkCheck("Hero", "Beams"));
         Debug.Log("Hero was hit by AOE: " + BossAtkCheck("Hero", "AOE"));
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        HeroZone.Attack("Boss"); 
     }
 
     //This should basically enforce turn order
