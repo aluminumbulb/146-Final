@@ -393,6 +393,10 @@ PrefabInstance:
       propertyPath: heroPos
       value: 
       objectReference: {fileID: 1643169834}
+    - target: {fileID: 6469890269588359035, guid: 5ea3a0489feb01041b9ce5cb7169d299, type: 3}
+      propertyPath: bossHealth
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ea3a0489feb01041b9ce5cb7169d299, type: 3}
 --- !u!1 &1643169831

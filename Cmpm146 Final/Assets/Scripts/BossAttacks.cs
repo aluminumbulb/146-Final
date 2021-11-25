@@ -14,28 +14,40 @@ public class BossAttacks : MonoBehaviour
     public bool showSwipe = true;
     public bool showBeams = true;
     public bool showAOE = true;
+    public string currAttack;
+    public bool inputGiven;
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
+            currAttack = "SwipeRight";
+            inputGiven = true;
             SwipeRight("Hero");
         }
 
         if (Input.GetKeyDown(KeyCode.X))
         {
+            currAttack = "SwipeLeft";
+            inputGiven = true;
             SwipeLeft("Hero");
         }
 
         if (Input.GetKeyDown(KeyCode.C))
         {
+            currAttack = "Beams";
+            inputGiven = true;
             Beams("Hero");
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            currAttack = "AOE";
+            inputGiven = true;
             AOE("Hero");
         }
+
+        inputGiven = false;
     }
     public bool SwipeRight(string obj)
     {

@@ -13,6 +13,9 @@ public class BTNode
     float totalUses = 0;
     public float aveDeltX = 0, aveDeltY = 0, aveDeltHealth = 0;
     protected GameState gs = null;
+    private Vector3 currHeroPos, prevHeroPos;
+    private float prevBossHealth, currBossHealth;
+    BTNode chainPtr = null;
     //Basic execute should pretty much always be available to any kind of node
 
     //============This is hopefully where we're gunna make the magic happen========================
@@ -23,25 +26,63 @@ public class BTNode
     {
         //Updates this nodes priority adjusting values:
         totalUses++; //increase total uses generally
-        totDeltX += gs.getDeltX();
-        totDeltY += gs.getDeltY();
-        totDeltHealth += gs.getDeltHealth();
+        totDeltX += currHeroPos.x - prevHeroPos.x;
+        totDeltY += currHeroPos.y - prevHeroPos.y;
+        totDeltHealth += currBossHealth - prevBossHealth;
 
+        //Average used to determine the likely effect of the action
         aveDeltX = totDeltX / totalUses;
         aveDeltY = totDeltY / totalUses;
         aveDeltHealth = totDeltHealth / totalUses;
 
-        //TODO: Prove directionality and signs
+        //unsure about these signs
+
         float xDiff = gs.boss.position.x - gs.hero.position.x;
         float yDiff = gs.boss.position.y - gs.hero.position.y;
 
-        //Priority will attempt to minimize all of these values to the best of its ability
-        priority = 
-            Mathf.Abs(xDiff + aveDeltX)
-            + Mathf.Abs(yDiff + aveDeltY) 
-            + Mathf.Abs(gs.bossHealth + aveDeltHealth);
+        //Priority queue will attempt to maximize all these values
+        priority = transDeltX(xDiff, aveDeltX) + transDeltY(yDiff, aveDeltY) + transDeltHealth(gs.bossHealth,aveDeltHealth);
     }
     //=============================================================================================
+
+    //This and its sister below set up variables which will be compared,
+    //They do this in the case that actions add more than one attribute to the mix
+    //The whole subtree can be evaluated on the changes it brings
+    protected void setBeforeValues()
+    {
+        prevHeroPos = gs.hero.position;
+        prevBossHealth = gs.bossHealth;
+    }
+
+    protected void setAfterValues()
+    {
+        currHeroPos = gs.hero.position;
+        currBossHealth = gs.bossHealth;
+    }
+
+    float transDeltX(float xDiff, float aveDeltx)
+    {
+        //The amount that needs to be done, constrained, times the amound it might help
+        //Same signs should maximize the value, while opposing signs will minimize it
+        //(i.e. preferred direction should arise)
+        return sigmoid(xDiff) * aveDeltX;
+    }
+
+    float transDeltY(float yDiff, float aveDeltY)
+    {
+        return sigmoid(yDiff) * aveDeltY;
+    }
+
+    float transDeltHealth(float bossHealth, float aveDeltHealth)
+    {
+        //boss health should pretty much always be priority 1
+        return 1 * aveDeltHealth;
+    }
+
+    float sigmoid(float x)
+    {
+        return 1 / (1 + Mathf.Exp(-x));
+    }
 
     public virtual bool execute()
     {
@@ -63,8 +104,6 @@ public class BTNode
             myQ.reorganize();
         }
     }
-
-
 }
 
 public class BTAction : BTNode
@@ -115,6 +154,7 @@ public class BTSelector : BTNode
         bool response = false;//Perform the check
         //btq.reorganize();//orders the sub-nodes before going through them
         //Iterate through every node in order
+        base.setBeforeValues();
         foreach (BTNode node in btq.getPQ())
         {
             //Attempt to execute the underlying node
@@ -125,6 +165,7 @@ public class BTSelector : BTNode
                 break;
             }
         }
+        base.setAfterValues();
         base.trainingFunction();//update priority
         return response;
     }
@@ -149,6 +190,7 @@ public class BTSequence : BTNode
         bool response = false;//Perform the check
         //btq.reorganize();//orders the sub-nodes before going through them
         //Iterate through every node in order
+        base.setBeforeValues();
         foreach (BTNode node in btq.getPQ())
         {
             //Attempt to execute the underlying node
@@ -159,6 +201,7 @@ public class BTSequence : BTNode
                 break;
             }
         }
+        base.setAfterValues();
         base.trainingFunction();//update priority
         return response;
     }

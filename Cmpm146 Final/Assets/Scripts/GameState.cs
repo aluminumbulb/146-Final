@@ -10,26 +10,29 @@ using UnityEngine;
 public class GameState : MonoBehaviour
 {
     public Transform hero, boss;
-    private Vector3 currHeroPos, prevHeroPos;
+    
     public float distBtwn;
     public float bossHealth;
     BossAttacks bossAtk;
     HeroZones HeroZone;
+    Movement heroMove;
     private float prevBossHealth, currBossHealth;
+    private Vector2 prevHeroPos, currHeroPos;
     public float lightDmg = 10;
     public float heavyDmg = 20;
     private BehaviorTree bt;
 
     //Just shows what state we're in with a little more readability
-    enum turn {BOSS_DECISION, HERO_DECISION, ACTION };
-    turn currTurn = turn.BOSS_DECISION;
+    public enum turn {BOSS_DECISION, HERO_DECISION, ACTION };
+    public turn currTurn = turn.BOSS_DECISION;
 
-    public bool inputPlaced = false;
     void Start()
     {
         //Initializng values
         bossAtk = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossAttacks>();
         HeroZone = GameObject.FindGameObjectWithTag("Hero").GetComponent<HeroZones>();
+        heroMove = GameObject.FindObjectOfType<Movement>();
+
         currHeroPos = prevHeroPos = hero.position;
         currBossHealth = prevBossHealth = bossHealth;
 
@@ -60,13 +63,20 @@ public class GameState : MonoBehaviour
             if (currTurn == turn.BOSS_DECISION)
             {
                 Debug.Log("Boss Decision Turn");
-                //Wait for user to confirm their input
-                while (!inputPlaced) //This can't be a key down due to timing problems
+                // Wait for user to confirm their input
+                // this infinite loops, whoops
+                /*
+                bool done = false;
+                while (!done)
                 {
-                    inputPlaced = true;//Have some other function do this
-                   yield return null;
+                    if (bossAtk.inputGiven)
+                    {
+                        done = true;
+                        currTurn = turn.HERO_DECISION;
+                    }
                 }
-                currTurn = turn.HERO_DECISION;
+                yield return null;
+                */
             }
 
             if(currTurn == turn.HERO_DECISION)
@@ -85,14 +95,15 @@ public class GameState : MonoBehaviour
             yield return null;
         }
         Debug.Log("Exited pipe");
+        StopAllCoroutines();
     }
 
-    bool HeroAtkCheck(string obj)
+    public bool HeroAtkCheck(string obj)
     {
         return HeroZone.Attack(obj);
     }
 
-    bool BossAtkCheck(string obj, string atk)
+    public bool BossAtkCheck(string obj, string atk)
     {
         //check which atk is being used and get the hitObjs from it
         if (atk == "SwipeRight") 
@@ -124,32 +135,5 @@ public class GameState : MonoBehaviour
         }
 
         return false;
-    }
-
-    //We need to be certain this only gets called once per tree check
-    void UpdateStateValues()
-    {
-        prevHeroPos = currHeroPos;
-        currHeroPos = hero.position;
-
-        prevBossHealth = currBossHealth;
-        currBossHealth = bossHealth;
-
-        distBtwn = Vector3.Distance(hero.position, boss.position);
-    }
-
-    public float getDeltX()
-    {
-        return currHeroPos.x - prevHeroPos.y;
-    }
-
-    public float getDeltY()
-    {
-        return currHeroPos.x - prevHeroPos.y;
-    }
-
-    public float getDeltHealth()
-    {
-        return currBossHealth - prevBossHealth;
     }
 }

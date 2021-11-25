@@ -38,14 +38,12 @@ public class BehaviorTree : MonoBehaviour
         dodgeBranch.pushNode(new BTCheck(dodgeCheck, state));
         dodgeBranch.pushNode(new BTAction(moveToSafety, state));
         root.pushNode(dodgeBranch);
-
-        
     }
 
     public void execute()
     {
         ready = false;
-        //root.execute(); too nervous to uncomment rn
+        root.execute(); //too nervous to uncomment rn
         Debug.Log("Executed with Imperiousness");
         ready = true;
     }
@@ -75,6 +73,7 @@ public class BehaviorTree : MonoBehaviour
     // attackCheck to see if hero in range for attack
     public bool attackCheck()
     {
+        Debug.Log("AttackCheck");
         state.distBtwn = Mathf.Abs(Vector2.Distance(state.hero.position, state.boss.position));
         return state.distBtwn == 1f;
     }
@@ -83,7 +82,8 @@ public class BehaviorTree : MonoBehaviour
     public bool bossAttacked()
     {
         // did boss just launch an attack?
-        return false;
+        Debug.Log("BossAttack?: " + state.currTurn);
+        return state.currTurn == GameState.turn.BOSS_DECISION;
     }
 
     // check to see if hero's square is in danger
@@ -91,7 +91,8 @@ public class BehaviorTree : MonoBehaviour
     {
         // get square player is on
         // is square about to be covered by bullet?
-        return false;
+        Debug.Log("DodgeCheck");
+        return state.BossAtkCheck("Hero", state.bossAtk.currAttack);
     }
 
     /*
@@ -101,6 +102,7 @@ public class BehaviorTree : MonoBehaviour
     // lightAttack hero stab boss action
     public bool lightAttack()
     {
+        Debug.Log("Light Attack");
         // play light swing anim
         state.bossHealth -= state.lightDmg;
         return true;
@@ -109,6 +111,7 @@ public class BehaviorTree : MonoBehaviour
     // heavyAttack hero big swing boss action
     public bool heavyAttack()
     {
+        Debug.Log("Heavy Attack");
         // play heavy swing anim
         state.bossHealth -= state.heavyDmg;
         return true;
@@ -117,8 +120,10 @@ public class BehaviorTree : MonoBehaviour
     // move hero out of danger
     public bool moveToSafety()
     {
+        Debug.Log("Dodge");
         // find closest square that is not under attack
         // move player to that square
+        state.heroMove.movePoint.position += new Vector3(0f, 0f, 0f);
         return true;
     }
 }
