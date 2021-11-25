@@ -9,11 +9,6 @@ public class HeroZones : MonoBehaviour
     public bool ShowAtk;
 
     public bool IsAoe;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     public bool Attack(string obj)
     {
@@ -31,13 +26,12 @@ public class HeroZones : MonoBehaviour
         Collider2D[] hitBoss = Physics2D.OverlapBoxAll(AtkPoint.position, new Vector2(width, length), 0, enemyLayers);
 
         //send meesage to Hero/ hit the Hero
-        foreach (Collider2D Enemy in hitBoss)
-        {
-            Debug.Log("Hero hit " + Enemy.name);
-        }
-
         foreach (Collider2D Hero in hitBoss)
         {
+            if (obj == "ShowAllHit")
+            {
+                Debug.Log("Hero hit" + Hero.name);
+            }
             if (Hero.name == obj)
             {
                 return true;
@@ -47,13 +41,12 @@ public class HeroZones : MonoBehaviour
         hitBoss = Physics2D.OverlapBoxAll(AtkPoint.position, new Vector2(length, width), 0, enemyLayers);
 
         //send meesage to Hero/ hit the Hero
-        foreach (Collider2D Enemy in hitBoss)
-        {
-            Debug.Log("Hero hit " + Enemy.name);
-        }
-
         foreach (Collider2D Hero in hitBoss)
         {
+            if (obj == "ShowAllHit")
+            {
+                Debug.Log("Hero hit " + Hero.name);
+            }
             if (Hero.name == obj)
             {
                 return true;

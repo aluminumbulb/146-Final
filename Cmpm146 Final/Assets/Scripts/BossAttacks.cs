@@ -47,12 +47,11 @@ public class BossAttacks : MonoBehaviour
         //send meesage to Hero/ hit the Hero
         foreach (Collider2D Hero in hitHero)
         {
-            Debug.Log("hit " + Hero.name + " with Swipe Right");
-        }
-        
-        foreach (Collider2D Hero in hitHero)
-        {
-            if(Hero.name == obj)
+            if (obj == "ShowAllHit")
+            {
+                Debug.Log("hit " + Hero.name + " with Swipe Right");
+            }
+            if (Hero.name == obj)
             {
                 return true;
             }
@@ -70,11 +69,10 @@ public class BossAttacks : MonoBehaviour
         //send meesage to Hero/ hit the Hero
         foreach (Collider2D Hero in hitHero)
         {
-            Debug.Log("hit " + Hero.name + " with Swipe Left");
-        }
-
-        foreach (Collider2D Hero in hitHero)
-        {
+            if (obj == "ShowAllHit")
+            {
+                Debug.Log("hit " + Hero.name + " with Swipe Left");
+            }
             if (Hero.name == obj)
             {
                 return true;
@@ -93,11 +91,10 @@ public class BossAttacks : MonoBehaviour
         //send meesage to Hero/ hit the Hero
         foreach (Collider2D Hero in hitHero)
         {
-            Debug.Log("hit " + Hero.name + " with AOE");
-        }
-
-        foreach (Collider2D Hero in hitHero)
-        {
+            if (obj == "ShowAllHit")
+            {
+                Debug.Log("hit " + Hero.name + " with AOE");
+            }
             if (Hero.name == obj)
             {
                 return true;
@@ -115,11 +112,10 @@ public class BossAttacks : MonoBehaviour
         //send meesage to Hero/ hit the Hero
         foreach (Collider2D Hero in hitHero)
         {
-            Debug.Log("hit " + Hero.name + " with Beams horizontal");
-        }
-
-        foreach (Collider2D Hero in hitHero)
-        {
+            if (obj == "ShowAllHit")
+            {
+                Debug.Log("hit " + Hero.name + " with Beams horizontal");
+            }
             if (Hero.name == obj)
             {
                 return true;
@@ -130,11 +126,10 @@ public class BossAttacks : MonoBehaviour
 
         foreach (Collider2D Hero in hitHero)
         {
-            Debug.Log("hit " + Hero.name + " with Beams vertical");
-        }
-
-        foreach (Collider2D Hero in hitHero)
-        {
+            if (obj == "ShowAllHit")
+            {
+                Debug.Log("hit " + Hero.name + " with Beams vertical");
+            }
             if (Hero.name == obj)
             {
                 return true;

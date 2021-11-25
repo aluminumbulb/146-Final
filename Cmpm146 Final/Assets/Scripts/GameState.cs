@@ -38,14 +38,18 @@ public class GameState : MonoBehaviour
         bt = FindObjectOfType<BehaviorTree>();
 
         StartCoroutine(turnOrder());
-        Debug.Log("Hero was hit by Beams: " + BossAtkCheck("Hero", "Beams"));
-        Debug.Log("Hero was hit by AOE: " + BossAtkCheck("Hero", "AOE"));
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        HeroZone.Attack("Boss"); 
+        //ive been using this in update to check that attack boxes are correct - David
+        //Debug.Log("HeroMoveE was hit by LSwipe: " + BossAtkCheck("HeroMoveE", "SwipeLeft"));
+        //this shows all hit move points in debug
+        //BossAtkCheck("ShowAllHit", "Beams");
+        //this one doesnt need a debug since the debug 
+        //HeroAtkCheck("Boss")
     }
 
     //This should basically enforce turn order
@@ -81,6 +85,11 @@ public class GameState : MonoBehaviour
             yield return null;
         }
         Debug.Log("Exited pipe");
+    }
+
+    bool HeroAtkCheck(string obj)
+    {
+        return HeroZone.Attack(obj);
     }
 
     bool BossAtkCheck(string obj, string atk)
