@@ -29,8 +29,19 @@ public class GameState : MonoBehaviour
     {
         //Initializng values
         bossAtk = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossAttacks>();
+        if(bossAtk == null){
+            Debug.Log("Boss Attack not found");
+        }
+      
         HeroZone = GameObject.FindGameObjectWithTag("Hero").GetComponent<HeroZones>();
+        if(HeroZone == null){
+            Debug.Log("Hero Zone not found");
+        }
+
         heroMove = GameObject.FindObjectOfType<Movement>();
+        if(heroMove == null){
+            Debug.Log("Hero Move not found");
+        }
 
         currHeroPos = prevHeroPos = hero.position;
         currBossHealth = prevBossHealth = bossHealth;

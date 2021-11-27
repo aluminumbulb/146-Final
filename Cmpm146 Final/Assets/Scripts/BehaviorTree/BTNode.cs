@@ -15,7 +15,6 @@ public class BTNode
     protected GameState gs = null;
     private Vector3 currHeroPos, prevHeroPos;
     private float prevBossHealth, currBossHealth;
-    BTNode chainPtr = null;
     //Basic execute should pretty much always be available to any kind of node
 
     //============This is hopefully where we're gunna make the magic happen========================
