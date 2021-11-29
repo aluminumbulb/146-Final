@@ -122,6 +122,25 @@ public class BTAction : BTNode
     }
 }
 
+//An action node that will shift itself within a tree structure
+public class BTDynamicAction : BTNode
+{
+     actionDelegate del;
+
+    public BTDynamicAction(actionDelegate del, GameState state)
+    {
+        this.del = del;
+        base.gs = state;
+    }
+
+    public override bool execute()
+    {
+        bool response = del();//Perform the check
+        base.trainingFunction();
+        return response;
+    }
+}
+
 public class BTCheck : BTNode
 {
     checkDelegate del;
@@ -217,9 +236,88 @@ public class BTSequence : BTNode
         btq.push(node);
     }
 }
-//Static Branch structures could be used in the same way they're used for leaves,
-//but I'd like to avoid that unless needed. (Just fill one with all static leafs
-//to achieve a similar affect
+
+
+//----------Static Versions of Branch Structures---------------
+/*
+These act similarly to the above, but they do not "train" themselves to shift around in a parent branch structure
+*/
+public class BTStaticSelector : BTNode
+{
+    BTPriorityQueue btq;
+    public BTStaticSelector(GameState state)
+    {
+        btq = new BTPriorityQueue();
+        base.gs = state;
+    }
+
+    public override bool execute()
+    {
+        bool response = false;//Perform the check
+        //btq.reorganize();//orders the sub-nodes before going through them
+        //Iterate through every node in order
+        base.setBeforeValues();
+        foreach (BTNode node in btq.getPQ())
+        {
+            Debug.Log("BT Selector Executing a Node");
+            //Attempt to execute the underlying node
+            //return true as soon as a selected node has succeeded
+            response = node.execute();
+            //if (node.execute())
+            if(response)
+            {
+                Debug.Log("Node successfully Executed");
+                //response = true;
+                break;
+            }
+        }
+        base.setAfterValues();
+        return response;
+    }
+
+    public void pushNode(BTNode node)
+    {
+        btq.push(node);
+    }
+}
+
+public class BTStaticSequence : BTNode
+{
+    BTPriorityQueue btq;
+    public BTStaticSequence(GameState state)
+    {
+        btq = new BTPriorityQueue();
+        base.gs = state;
+    }
+
+    public override bool execute()
+    {
+        bool response = true;//Perform the check
+        //btq.reorganize();//orders the sub-nodes before going through them
+        //Iterate through every node in order
+        base.setBeforeValues();
+        foreach (BTNode node in btq.getPQ())
+        {
+            Debug.Log("BT Sequence Executing a Node");
+            //Attempt to execute the underlying node
+            //return true as soon as a selected node has succeeded
+            response = node.execute();
+            if (!response)
+            {
+                //response = true;
+                Debug.Log("Sequence Encountered Failure");
+                break;
+            }
+        }
+        base.setAfterValues();
+        return response;
+    }
+
+    public void pushNode(BTNode node)
+    {
+        btq.push(node);
+    }
+}
 
 /*
 /// <summary>

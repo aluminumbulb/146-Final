@@ -15,11 +15,13 @@ public class BehaviorTree : MonoBehaviour
 {
     GameState state;
     BTSelector root;
+    TreeMovement heroControl;
     public bool ready = false;//indicates if a tree has made a decision
 
     // Start is called before the first frame update
     void Start()
     {
+        heroControl = FindObjectOfType<TreeMovement>();
         state = FindObjectOfType<GameState>();
         root = new BTSelector(state);
 
@@ -38,6 +40,13 @@ public class BehaviorTree : MonoBehaviour
         dodgeBranch.pushNode(new BTCheck(dodgeCheck, state));
         dodgeBranch.pushNode(new BTAction(moveToSafety, state));
         root.pushNode(dodgeBranch);
+
+        BTSelector moveDirSelect = new BTSelector(state);
+        moveDirSelect.pushNode(new BTDynamicAction(moveUp, state));
+        moveDirSelect.pushNode(new BTDynamicAction(moveDown, state));
+        moveDirSelect.pushNode(new BTDynamicAction(moveLeft, state));
+        moveDirSelect.pushNode(new BTDynamicAction(moveRight, state));
+        root.pushNode(moveDirSelect);
     }
 
     public void execute()
@@ -128,6 +137,30 @@ public class BehaviorTree : MonoBehaviour
         // find closest square that is not under attack
         // move player to that square
         state.heroMove.movePoint.position += new Vector3(0f, 0f, 0f);
+        return true;
+    }
+
+    public bool moveUp(){
+        //Add ray check here
+        heroControl.MoveUp();
+        return true;
+    }
+
+    public bool moveDown(){
+        //Add ray check here
+        heroControl.MoveDown();
+        return true;
+    }
+
+    public bool moveRight(){
+        //Add ray check here
+        heroControl.MoveRight();
+        return true;
+    }
+
+    public bool moveLeft(){
+        //Add ray check here
+        heroControl.MoveLeft();
         return true;
     }
 }
