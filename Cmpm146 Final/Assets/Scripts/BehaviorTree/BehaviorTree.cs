@@ -53,7 +53,7 @@ public class BehaviorTree : MonoBehaviour
     {
         ready = false;
         root.execute();
-        Debug.Log("Executed with Imperiousness");
+        //Debug.Log("Executed with Imperiousness");
         ready = true;
     }
 
@@ -84,7 +84,7 @@ public class BehaviorTree : MonoBehaviour
     {
        
         state.distBtwn = Mathf.Abs(Vector2.Distance(state.hero.position, state.boss.position));
-         Debug.Log("AttackCheck, dist between = "+ state.distBtwn);
+        Debug.Log("AttackCheck, dist between = "+ state.distBtwn);
         return state.distBtwn == 1f;
     }
 

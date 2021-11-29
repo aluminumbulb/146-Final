@@ -92,7 +92,8 @@ public class GameState : MonoBehaviour
                 //At this phase, we should check the result of the boss' move on the hero
                 currTurn = turn.BOSS_DECISION;
             }
-            yield return null;
+            //Test to slow everything down for better analysis:
+            yield return new WaitForSeconds(1);
         }
         Debug.Log("Exited pipe");
         StopAllCoroutines();

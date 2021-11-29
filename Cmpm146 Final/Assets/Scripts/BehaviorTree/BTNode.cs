@@ -36,11 +36,13 @@ public class BTNode
 
         //unsure about these signs
 
-        float xDiff = gs.boss.position.x - gs.hero.position.x;
-        float yDiff = gs.boss.position.y - gs.hero.position.y;
+        float xDiff = gs.boss.position.x - gs.hero.position.x ;
+        float yDiff = gs.boss.position.y - gs.hero.position.y ;
 
         //Priority queue will attempt to maximize all these values
         priority = transDeltX(xDiff, aveDeltX) + transDeltY(yDiff, aveDeltY) + transDeltHealth(gs.bossHealth,aveDeltHealth);
+        //updatePriority(priority);
+        Debug.Log("Priority: "+priority);
     }
     //=============================================================================================
 
@@ -64,12 +66,14 @@ public class BTNode
         //The amount that needs to be done, constrained, times the amound it might help
         //Same signs should maximize the value, while opposing signs will minimize it
         //(i.e. preferred direction should arise)
-        return sigmoid(xDiff) * aveDeltX;
+        //return sigmoid(xDiff) * aveDeltX;
+        return 1/(xDiff) * aveDeltx;
     }
 
     float transDeltY(float yDiff, float aveDeltY)
     {
-        return sigmoid(yDiff) * aveDeltY;
+        //return sigmoid(yDiff) * aveDeltY;
+        return 1/(yDiff) * aveDeltY;
     }
 
     float transDeltHealth(float bossHealth, float aveDeltHealth)
@@ -86,22 +90,6 @@ public class BTNode
     public virtual bool execute()
     {
         return true;
-    }
-
-    /// <summary>
-    /// Changes the priority of a node 
-    /// </summary>
-    /// <param name="priDelt">
-    /// The amount the node's priority will change,
-    /// note that it is Addititve and that it can go negative
-    /// </param>
-    void updatePriority(float priDelt)
-    {
-        priority += priDelt;
-        if (myQ != null)
-        {
-            myQ.reorganize();
-        }
     }
 }
 
@@ -134,8 +122,10 @@ public class BTDynamicAction : BTNode
     }
 
     public override bool execute()
-    {
+    {   
+        base.setBeforeValues();
         bool response = del();//Perform the check
+        base.setAfterValues();
         base.trainingFunction();
         return response;
     }
@@ -170,19 +160,19 @@ public class BTSelector : BTNode
     public override bool execute()
     {
         bool response = false;//Perform the check
-        //btq.reorganize();//orders the sub-nodes before going through them
+        btq.reorganize();//orders the sub-nodes before going through them
         //Iterate through every node in order
         base.setBeforeValues();
         foreach (BTNode node in btq.getPQ())
         {
-            Debug.Log("BT Selector Executing a Node");
+            //Debug.Log("BT Selector Executing a Node");
             //Attempt to execute the underlying node
             //return true as soon as a selected node has succeeded
             response = node.execute();
             //if (node.execute())
             if(response)
             {
-                Debug.Log("Node successfully Executed");
+                //Debug.Log("Node successfully Executed");
                 //response = true;
                 break;
             }
@@ -210,19 +200,19 @@ public class BTSequence : BTNode
     public override bool execute()
     {
         bool response = true;//Perform the check
-        //btq.reorganize();//orders the sub-nodes before going through them
+        btq.reorganize();//orders the sub-nodes before going through them
         //Iterate through every node in order
         base.setBeforeValues();
         foreach (BTNode node in btq.getPQ())
         {
-            Debug.Log("BT Sequence Executing a Node");
+            //Debug.Log("BT Sequence Executing a Node");
             //Attempt to execute the underlying node
             //return true as soon as a selected node has succeeded
             response = node.execute();
             if (!response)
             {
                 //response = true;
-                Debug.Log("Sequence Encountered Failure");
+                //Debug.Log("Sequence Encountered Failure");
                 break;
             }
         }
@@ -254,19 +244,18 @@ public class BTStaticSelector : BTNode
     public override bool execute()
     {
         bool response = false;//Perform the check
-        //btq.reorganize();//orders the sub-nodes before going through them
         //Iterate through every node in order
         base.setBeforeValues();
         foreach (BTNode node in btq.getPQ())
         {
-            Debug.Log("BT Selector Executing a Node");
+            //Debug.Log("BT Selector Executing a Node");
             //Attempt to execute the underlying node
             //return true as soon as a selected node has succeeded
             response = node.execute();
             //if (node.execute())
             if(response)
             {
-                Debug.Log("Node successfully Executed");
+                //Debug.Log("Node successfully Executed");
                 //response = true;
                 break;
             }
@@ -293,19 +282,18 @@ public class BTStaticSequence : BTNode
     public override bool execute()
     {
         bool response = true;//Perform the check
-        //btq.reorganize();//orders the sub-nodes before going through them
         //Iterate through every node in order
         base.setBeforeValues();
         foreach (BTNode node in btq.getPQ())
         {
-            Debug.Log("BT Sequence Executing a Node");
+            //Debug.Log("BT Sequence Executing a Node");
             //Attempt to execute the underlying node
             //return true as soon as a selected node has succeeded
             response = node.execute();
             if (!response)
             {
                 //response = true;
-                Debug.Log("Sequence Encountered Failure");
+                //Debug.Log("Sequence Encountered Failure");
                 break;
             }
         }
