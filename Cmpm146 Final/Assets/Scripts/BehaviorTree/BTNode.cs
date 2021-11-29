@@ -156,11 +156,15 @@ public class BTSelector : BTNode
         base.setBeforeValues();
         foreach (BTNode node in btq.getPQ())
         {
+            Debug.Log("BT Selector Executing a Node");
             //Attempt to execute the underlying node
             //return true as soon as a selected node has succeeded
-            if (node.execute())
+            response = node.execute();
+            //if (node.execute())
+            if(response)
             {
-                response = true;
+                Debug.Log("Node successfully Executed");
+                //response = true;
                 break;
             }
         }
@@ -186,17 +190,20 @@ public class BTSequence : BTNode
 
     public override bool execute()
     {
-        bool response = false;//Perform the check
+        bool response = true;//Perform the check
         //btq.reorganize();//orders the sub-nodes before going through them
         //Iterate through every node in order
         base.setBeforeValues();
         foreach (BTNode node in btq.getPQ())
         {
+            Debug.Log("BT Sequence Executing a Node");
             //Attempt to execute the underlying node
             //return true as soon as a selected node has succeeded
-            if (!node.execute())
+            response = node.execute();
+            if (!response)
             {
-                response = true;
+                //response = true;
+                Debug.Log("Sequence Encountered Failure");
                 break;
             }
         }

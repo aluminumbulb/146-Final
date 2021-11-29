@@ -34,7 +34,7 @@ public class BehaviorTree : MonoBehaviour
         root.pushNode(heavyAttackBranch);
 
         BTSequence dodgeBranch = new BTSequence(state);
-        dodgeBranch.pushNode(new BTCheck(bossAttacked, state));
+        //dodgeBranch.pushNode(new BTCheck(bossAttacked, state));
         dodgeBranch.pushNode(new BTCheck(dodgeCheck, state));
         dodgeBranch.pushNode(new BTAction(moveToSafety, state));
         root.pushNode(dodgeBranch);
@@ -43,7 +43,7 @@ public class BehaviorTree : MonoBehaviour
     public void execute()
     {
         ready = false;
-        root.execute(); //too nervous to uncomment rn
+        root.execute();
         Debug.Log("Executed with Imperiousness");
         ready = true;
     }
@@ -73,11 +73,14 @@ public class BehaviorTree : MonoBehaviour
     // attackCheck to see if hero in range for attack
     public bool attackCheck()
     {
-        Debug.Log("AttackCheck");
+       
         state.distBtwn = Mathf.Abs(Vector2.Distance(state.hero.position, state.boss.position));
+         Debug.Log("AttackCheck, dist between = "+ state.distBtwn);
         return state.distBtwn == 1f;
     }
 
+    //This I think is a Nonology for the time being
+    /*
     // check to see if boss just attacked
     public bool bossAttacked()
     {
@@ -85,6 +88,7 @@ public class BehaviorTree : MonoBehaviour
         Debug.Log("BossAttack?: " + state.currTurn);
         return state.currTurn == GameState.turn.BOSS_DECISION;
     }
+    */
 
     // check to see if hero's square is in danger
     public bool dodgeCheck()
