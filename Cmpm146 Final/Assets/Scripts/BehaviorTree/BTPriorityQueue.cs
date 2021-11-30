@@ -41,8 +41,9 @@ public class BTPriorityQueue
         foreach(BTNode node in pq)
         {
             //We're attempting to get the priority as close to zero as possible
-            
-            node.priority = Mathf.Abs(gs.transDeltX() * node.aveDeltX + gs.transDeltY() * node.aveDeltY); //+ gs.bossHealth * node.aveDeltHealth;
+
+            //node.priority = Mathf.Abs(gs.transDeltX() * node.aveDeltX) + Mathf.Abs(gs.transDeltY() * node.aveDeltY); //+ gs.bossHealth * node.aveDeltHealth;
+            node.priority = Mathf.Abs(gs.transDeltX() + node.aveDeltX) + Mathf.Abs(gs.transDeltY() + node.aveDeltY); //+ gs.bossHealth * node.aveDeltHealth;
             Debug.Log("New node priority: "+node.priority);
         }
         //Taken from: https://answers.unity.com/questions/677070/sorting-a-list-linq.html

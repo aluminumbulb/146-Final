@@ -147,15 +147,17 @@ public class GameState : MonoBehaviour
         //The amount that needs to be done, constrained, times the amound it might help
         //Same signs should maximize the value, while opposing signs will minimize it
         //(i.e. preferred direction should arise)
-        float xDiff = boss.position.x - hero.position.x;
-        return sigmoid(xDiff);
+        float xDiff = hero.position.x - boss.position.x;
+        return xDiff;
+        //return sigmoid(xDiff);
         //return 1/(xDiff) + aveDeltx;
     }
 
     public float transDeltY()
     {
-        float yDiff = boss.position.y - hero.position.y;
-        return sigmoid(yDiff);
+        float yDiff = hero.position.y - boss.position.y;
+        return yDiff;
+        //return sigmoid(yDiff);
     }
 
     float sigmoid(float x)
