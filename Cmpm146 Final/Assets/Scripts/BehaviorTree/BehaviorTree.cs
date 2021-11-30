@@ -43,8 +43,8 @@ public class BehaviorTree : MonoBehaviour
 
         BTSelector moveDirSelect = new BTSelector(state);
         moveDirSelect.pushNode(new BTDynamicAction(moveUp, state));
-        moveDirSelect.pushNode(new BTDynamicAction(moveDown, state));
         moveDirSelect.pushNode(new BTDynamicAction(moveLeft, state));
+        moveDirSelect.pushNode(new BTDynamicAction(moveDown, state));
         moveDirSelect.pushNode(new BTDynamicAction(moveRight, state));
         root.pushNode(moveDirSelect);
     }

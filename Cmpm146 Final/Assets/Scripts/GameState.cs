@@ -93,7 +93,7 @@ public class GameState : MonoBehaviour
                 currTurn = turn.BOSS_DECISION;
             }
             //Test to slow everything down for better analysis:
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(.1f);
         }
         Debug.Log("Exited pipe");
         StopAllCoroutines();
@@ -136,5 +136,30 @@ public class GameState : MonoBehaviour
         }
 
         return false;
+    }
+
+
+    /*
+        Returns X difference between hero and boss
+    */
+    public float transDeltX()
+    {
+        //The amount that needs to be done, constrained, times the amound it might help
+        //Same signs should maximize the value, while opposing signs will minimize it
+        //(i.e. preferred direction should arise)
+        float xDiff = boss.position.x - hero.position.x;
+        return sigmoid(xDiff);
+        //return 1/(xDiff) + aveDeltx;
+    }
+
+    public float transDeltY()
+    {
+        float yDiff = boss.position.y - hero.position.y;
+        return sigmoid(yDiff);
+    }
+
+    float sigmoid(float x)
+    {
+        return 1 / (1 + Mathf.Exp(-x));
     }
 }

@@ -23,8 +23,7 @@ public class BTPriorityQueue
     public void push(BTNode node)
     {
         pq.Add(node);
-        node.myQ = this;//Remembers reference parent queue 
-        reorganize();
+        node.myQ = this;//Remembers reference parent queue
     }
 
     public List<BTNode> getPQ()
@@ -37,14 +36,18 @@ public class BTPriorityQueue
     /// Currently unknown if ascending or descending
     /// entirely untested
     /// </summary>
-    public void reorganize()
+    public void reorganize(GameState gs)
     {
         foreach(BTNode node in pq)
         {
-            node.trainingFunction();
+            //We're attempting to get the priority as close to zero as possible
+            
+            node.priority = Mathf.Abs(gs.transDeltX() * node.aveDeltX + gs.transDeltY() * node.aveDeltY); //+ gs.bossHealth * node.aveDeltHealth;
+            Debug.Log("New node priority: "+node.priority);
         }
         //Taken from: https://answers.unity.com/questions/677070/sorting-a-list-linq.html
-        pq.Sort((e1, e2) => e2.priority.CompareTo(e1.priority));
+        //pq.Sort((e1, e2) => e2.priority.CompareTo(e1.priority));//biggest to smallest
+        pq.Sort((e1, e2) => e1.priority.CompareTo(e2.priority));//smallest to biggest
     }
 }
 

@@ -25,24 +25,14 @@ public class BTNode
     {
         //Updates this nodes priority adjusting values:
         totalUses++; //increase total uses generally
-        totDeltX += currHeroPos.x - prevHeroPos.x;
-        totDeltY += currHeroPos.y - prevHeroPos.y;
-        totDeltHealth += currBossHealth - prevBossHealth;
+        totDeltX += (currHeroPos.x - prevHeroPos.x);
+        totDeltY += (currHeroPos.y - prevHeroPos.y);
+        totDeltHealth += (currBossHealth - prevBossHealth);
 
         //Average used to determine the likely effect of the action
         aveDeltX = totDeltX / totalUses;
         aveDeltY = totDeltY / totalUses;
         aveDeltHealth = totDeltHealth / totalUses;
-
-        //unsure about these signs
-
-        float xDiff = gs.boss.position.x - gs.hero.position.x ;
-        float yDiff = gs.boss.position.y - gs.hero.position.y ;
-
-        //Priority queue will attempt to maximize all these values
-        priority = transDeltX(xDiff, aveDeltX) + transDeltY(yDiff, aveDeltY) + transDeltHealth(gs.bossHealth,aveDeltHealth);
-        //updatePriority(priority);
-        Debug.Log("Priority: "+priority);
     }
     //=============================================================================================
 
@@ -59,32 +49,6 @@ public class BTNode
     {
         currHeroPos = gs.hero.position;
         currBossHealth = gs.bossHealth;
-    }
-
-    float transDeltX(float xDiff, float aveDeltx)
-    {
-        //The amount that needs to be done, constrained, times the amound it might help
-        //Same signs should maximize the value, while opposing signs will minimize it
-        //(i.e. preferred direction should arise)
-        //return sigmoid(xDiff) * aveDeltX;
-        return 1/(xDiff) * aveDeltx;
-    }
-
-    float transDeltY(float yDiff, float aveDeltY)
-    {
-        //return sigmoid(yDiff) * aveDeltY;
-        return 1/(yDiff) * aveDeltY;
-    }
-
-    float transDeltHealth(float bossHealth, float aveDeltHealth)
-    {
-        //boss health should pretty much always be priority 1
-        return 1 * aveDeltHealth;
-    }
-
-    float sigmoid(float x)
-    {
-        return 1 / (1 + Mathf.Exp(-x));
     }
 
     public virtual bool execute()
@@ -105,6 +69,8 @@ public class BTAction : BTNode
 
     public override bool execute()
     {
+        //Given the current state, adjust priority
+
         bool response = del();//Perform the check
         return response;
     }
@@ -160,7 +126,7 @@ public class BTSelector : BTNode
     public override bool execute()
     {
         bool response = false;//Perform the check
-        btq.reorganize();//orders the sub-nodes before going through them
+        btq.reorganize(base.gs);
         //Iterate through every node in order
         base.setBeforeValues();
         foreach (BTNode node in btq.getPQ())
@@ -200,7 +166,7 @@ public class BTSequence : BTNode
     public override bool execute()
     {
         bool response = true;//Perform the check
-        btq.reorganize();//orders the sub-nodes before going through them
+        btq.reorganize(base.gs);
         //Iterate through every node in order
         base.setBeforeValues();
         foreach (BTNode node in btq.getPQ())
@@ -244,6 +210,7 @@ public class BTStaticSelector : BTNode
     public override bool execute()
     {
         bool response = false;//Perform the check
+        btq.reorganize(base.gs);
         //Iterate through every node in order
         base.setBeforeValues();
         foreach (BTNode node in btq.getPQ())
@@ -282,6 +249,7 @@ public class BTStaticSequence : BTNode
     public override bool execute()
     {
         bool response = true;//Perform the check
+        btq.reorganize(base.gs);
         //Iterate through every node in order
         base.setBeforeValues();
         foreach (BTNode node in btq.getPQ())
