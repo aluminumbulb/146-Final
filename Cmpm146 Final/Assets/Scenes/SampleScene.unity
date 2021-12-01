@@ -627,39 +627,75 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 588263175423782866, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 588263175423782866, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 634721424564123761, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 634721424564123761, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1994386300513769339, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1994386300513769339, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2150581655899035344, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2150581655899035344, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2293086501509499130, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2293086501509499130, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2834381546412162052, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2834381546412162052, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2945198898130902349, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945198898130902349, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3004972615067977899, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3004972615067977899, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4218749473928205225, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218749473928205225, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4612915532350116194, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
       propertyPath: m_IsTrigger
@@ -787,31 +823,59 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5838349694710662278, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5838349694710662278, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5881935552312278365, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881935552312278365, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6364015663268372501, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6364015663268372501, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7335765967838819967, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7335765967838819967, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7911591160822591093, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7911591160822591093, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8321859734591543489, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8321859734591543489, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8507747520563172411, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507747520563172411, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4612915532767138430, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}

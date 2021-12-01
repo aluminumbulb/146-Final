@@ -31,7 +31,7 @@ public class GameState : MonoBehaviour
     {
         //Initializng values
         bossAtk = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossAttacks>();
-        HeroZone = GameObject.FindGameObjectWithTag("Hero").GetComponent<HeroZones>();
+        HeroZone = FindObjectOfType<HeroZones>();
         heroMove = GameObject.FindObjectOfType<Movement>();
 
         currHeroPos = prevHeroPos = hero.position;
