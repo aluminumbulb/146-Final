@@ -47,16 +47,22 @@ public class BehaviorTree : MonoBehaviour
         moveNorthBranch.pushNode(new BTAction(moveNorth, state));//Try to move there.
 
         BTSequence moveSouthBranch = new BTSequence(state);
-        moveSouthBranch.pushNode(new BTCheck(sMovCheck, state));//Can I move there?
-        moveSouthBranch.pushNode(new BTAction(moveSouth, state));//Try to move there.
+        moveSouthBranch.pushNode(new BTCheck(sMovCheck, state));
+        moveSouthBranch.pushNode(new BTAction(moveSouth, state));
 
         BTSequence moveEastBranch = new BTSequence(state);
-        moveEastBranch.pushNode(new BTCheck(eMovCheck, state));//Can I move there?
-        moveEastBranch.pushNode(new BTAction(moveEast, state));//Try to move there.
+        moveEastBranch.pushNode(new BTCheck(eMovCheck, state));
+        moveEastBranch.pushNode(new BTAction(moveEast, state));
 
         BTSequence moveWestBranch = new BTSequence(state);
-        moveWestBranch.pushNode(new BTCheck(wMovCheck, state));//Can I move there?
-        moveWestBranch.pushNode(new BTAction(moveWest, state));//Try to move there.
+        moveWestBranch.pushNode(new BTCheck(wMovCheck, state));
+        moveWestBranch.pushNode(new BTAction(moveWest, state));
+
+        BTSelector moveDirSelect = new BTSelector(state);
+        moveDirSelect.pushNode(moveNorthBranch);
+        moveDirSelect.pushNode(moveSouthBranch);
+        moveDirSelect.pushNode(moveEastBranch);
+        moveDirSelect.pushNode(moveWestBranch);
 
         //---Dodge Branches---
         BTSequence dodgeNorthBranch = new BTSequence(state);
@@ -64,25 +70,16 @@ public class BehaviorTree : MonoBehaviour
         dodgeNorthBranch.pushNode(new BTAction(dodgeNorth, state));//Try to move there.
 
         BTSequence dodgeSouthBranch = new BTSequence(state);
-        dodgeSouthBranch.pushNode(new BTCheck(sDodgeCheck, state));//Can I move there?
-        dodgeSouthBranch.pushNode(new BTAction(dodgeSouth, state));//Try to move there.
+        dodgeSouthBranch.pushNode(new BTCheck(sDodgeCheck, state));
+        dodgeSouthBranch.pushNode(new BTAction(dodgeSouth, state));
 
         BTSequence dodgeEastBranch = new BTSequence(state);
-        dodgeEastBranch.pushNode(new BTCheck(eDodgeCheck, state));//Can I move there?
-        dodgeEastBranch.pushNode(new BTAction(dodgeEast, state));//Try to move there.
+        dodgeEastBranch.pushNode(new BTCheck(eDodgeCheck, state));
+        dodgeEastBranch.pushNode(new BTAction(dodgeEast, state));
 
         BTSequence dodgeWestBranch = new BTSequence(state);
-        dodgeWestBranch.pushNode(new BTCheck(wDodgeCheck, state));//Can I move there?
-        dodgeWestBranch.pushNode(new BTAction(dodgeWest, state));//Try to move there.
-        
-        BTSelector moveDirSelect = new BTSelector(state);
-        moveDirSelect.pushNode(moveNorthBranch);
-        moveDirSelect.pushNode(moveSouthBranch);
-        moveDirSelect.pushNode(moveEastBranch);
-        moveDirSelect.pushNode(moveWestBranch);
-        //moveDirSelect.pushNode(new BTDynamicAction(moveLeft, state));
-        //moveDirSelect.pushNode(new BTDynamicAction(moveRight, state));
-        //moveDirSelect.pushNode(new BTDynamicAction(moveDown, state));
+        dodgeWestBranch.pushNode(new BTCheck(wDodgeCheck, state));
+        dodgeWestBranch.pushNode(new BTAction(dodgeWest, state));
 
         BTSelector dodgeDirSelect = new BTSelector(state);
         dodgeDirSelect.pushNode(dodgeNorthBranch);
@@ -93,7 +90,6 @@ public class BehaviorTree : MonoBehaviour
         //---------Adding branches to root----------
         root.pushNode(moveDirSelect);
         root.pushNode(dodgeDirSelect);
-
     }
 
     public void execute()
@@ -130,8 +126,8 @@ public class BehaviorTree : MonoBehaviour
     {
        
         state.distBtwn = Mathf.Abs(Vector2.Distance(state.hero.position, state.boss.position));
-        //Debug.Log("AttackCheck, dist between = "+ state.distBtwn);
-        return state.distBtwn == 1f;
+        Debug.Log("AttackCheck, dist between = "+ state.distBtwn);
+        return state.distBtwn <= 3;
     }
 
     // check to see if hero's square is in danger

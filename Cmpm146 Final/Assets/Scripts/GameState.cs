@@ -83,6 +83,7 @@ public class GameState : MonoBehaviour
 
             if(currTurn == turn.HERO_DECISION)
             {
+                distBtwn = Vector3.Distance(hero.position, boss.position);
                 //Debug.Log("Hero Decision Turn");
                 bt.execute();
                 currTurn = turn.ACTION;

@@ -7,7 +7,6 @@ public class HeroZones : MonoBehaviour
     public Transform AtkPoint;
     public LayerMask enemyLayers;
     public bool ShowAtk;
-
     public bool IsAoe;
 
     public bool Attack(string obj)
