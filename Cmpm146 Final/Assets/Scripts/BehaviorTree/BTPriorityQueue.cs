@@ -43,23 +43,27 @@ public class BTPriorityQueue
             //We're attempting to get the priority as close to zero as possible
             //So we take the absolute value, such that minimum is closer to zero, not infinitely negative
 
-            node.priority = 
-            //The underused node's grace:
-
-            Mathf.Abs(node.aveDeltX+node.aveDeltY+node.aveDeltHealth)
-            /*
-            I think this works because it gives a very slight
-            advantage, which is the only situation in which we would
-            want such a toss-up
-            */ 
+            //An inelegent way to get around the problem of getting stuck
+            //If we don't know any of the properties of something, keep trying to use it.
+            if((Mathf.Abs(node.aveDeltX) + Mathf.Abs(node.aveDeltY) + Mathf.Abs(node.aveDeltHealth)) == 0){
+                node.priority = 0;
+            }else{
+                node.priority = 
             //Adding the amount of changes that need to be made with the amound we can change them
-            + Mathf.Abs(gs.transDeltX() + node.aveDeltX) 
-            + Mathf.Abs(gs.transDeltY() + node.aveDeltY) 
-            + Mathf.Abs(10 + gs.bossHealth + node.aveDeltHealth); //10+ is cheating, gotta fix that
+                (Mathf.Abs(gs.transDeltX() + node.aveDeltX)
+                + Mathf.Abs(gs.transDeltY() + node.aveDeltY)
+                + Mathf.Abs(gs.bossHealth + node.aveDeltHealth));
+            }
         }
         //Taken from: https://answers.unity.com/questions/677070/sorting-a-list-linq.html
         //pq.Sort((e1, e2) => e2.priority.CompareTo(e1.priority));//biggest to smallest
         pq.Sort((e1, e2) => e1.priority.CompareTo(e2.priority));//smallest to biggest
+    }
+
+    //Gotta use it somewhere...
+    float sigmoid(float x)
+    {
+        return 1 / (1 + Mathf.Exp(-x));
     }
 }
 

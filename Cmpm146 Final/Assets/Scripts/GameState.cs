@@ -152,19 +152,13 @@ public class GameState : MonoBehaviour
         //(i.e. preferred direction should arise)
         float xDiff = hero.position.x - boss.position.x;
         return xDiff;
-        //return sigmoid(xDiff);
-        //return 1/(xDiff) + aveDeltx;
     }
 
     public float transDeltY()
     {
         float yDiff = hero.position.y - boss.position.y;
         return yDiff;
-        //return sigmoid(yDiff);
     }
 
-    float sigmoid(float x)
-    {
-        return 1 / (1 + Mathf.Exp(-x));
-    }
+    
 }

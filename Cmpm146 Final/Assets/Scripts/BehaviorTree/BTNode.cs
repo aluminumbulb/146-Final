@@ -10,7 +10,7 @@ public class BTNode
     public BTPriorityQueue myQ = null;
     //These floats are used to calculate the average changes for each tracked value
     float totDeltX = 0, totDeltY = 0, totDeltHealth = 0;
-    float totalUses = 0;
+    public float totalUses = 0;
     public float aveDeltX = 0, aveDeltY = 0, aveDeltHealth = 0;
     protected GameState gs = null;
     private Vector3 currHeroPos, prevHeroPos;

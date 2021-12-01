@@ -99,24 +99,6 @@ public class BehaviorTree : MonoBehaviour
         ready = true;
     }
 
-    /// <summary>
-    /// Example function that follows format of delegates
-    /// </summary>
-    /// <returns>
-    /// True/False depending on the result of the function
-    /// </returns>
-    public bool somethin()
-    {
-        Debug.Log("I only tell truths");
-        return true;
-    }
-
-    public bool somethinElse()
-    {
-        Debug.Log("I only tell falsehoods");
-        return false;
-    }
-
     /*
      ******************CHECKS***********************
      */
@@ -124,9 +106,8 @@ public class BehaviorTree : MonoBehaviour
     // attackCheck to see if hero in range for attack
     public bool attackCheck()
     {
-       
         state.distBtwn = Mathf.Abs(Vector2.Distance(state.hero.position, state.boss.position));
-        Debug.Log("AttackCheck, dist between = "+ state.distBtwn);
+        //Debug.Log("AttackCheck, dist between = "+ state.distBtwn);
         return state.distBtwn <= 3;
     }
 
