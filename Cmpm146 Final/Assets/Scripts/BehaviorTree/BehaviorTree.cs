@@ -105,6 +105,7 @@ public class BehaviorTree : MonoBehaviour
         return state.BossAtkCheck("Hero", state.bossAtk.currAttack);
     }
 
+    //Check in a particular direction (in this case, north)
     bool nMovCheck(){
         return heroControl.CheckMovePoss(HeroControl.directions.N);
     }

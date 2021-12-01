@@ -16,9 +16,8 @@ public class AreaChecker : MonoBehaviour
     public bool checkDanger(){
         //Is anything in the space I occupy?
         RaycastHit2D hit = Physics2D.CircleCast(transform.position, radius, Vector3.zero, Mathf.Infinity ,~LayerMask.GetMask("Hero")); 
-        Debug.Log("Current collider hit: "+hit.collider);
+        
         if(hit.collider != null && hit.collider!=myCollider){
-            Debug.Log("Collision Detected! "+hit.collider);
             return false;
         }
 
