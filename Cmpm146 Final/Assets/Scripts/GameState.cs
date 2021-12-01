@@ -25,6 +25,8 @@ public class GameState : MonoBehaviour
     public enum turn {BOSS_DECISION, HERO_DECISION, ACTION};
     public turn currTurn = turn.BOSS_DECISION;
 
+    public float secPerTurn = 1f;//Largely used for testing
+
     void Start()
     {
         //Initializng values
@@ -93,7 +95,7 @@ public class GameState : MonoBehaviour
                 currTurn = turn.BOSS_DECISION;
             }
             //Test to slow everything down for better analysis:
-            yield return new WaitForSeconds(.1f);
+            yield return new WaitForSeconds(secPerTurn);
         }
         Debug.Log("Exited pipe");
         StopAllCoroutines();

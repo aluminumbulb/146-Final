@@ -15,13 +15,13 @@ public class BehaviorTree : MonoBehaviour
 {
     GameState state;
     BTSelector root;
-    TreeMovement heroControl;
+    HeroControl heroControl;
     public bool ready = false;//indicates if a tree has made a decision
 
     // Start is called before the first frame update
     void Start()
     {
-        heroControl = FindObjectOfType<TreeMovement>();
+        heroControl = FindObjectOfType<HeroControl>();
         state = FindObjectOfType<GameState>();
         root = new BTSelector(state);
 
@@ -41,19 +41,29 @@ public class BehaviorTree : MonoBehaviour
         dodgeBranch.pushNode(new BTAction(moveToSafety, state));
         root.pushNode(dodgeBranch);
 
+        //----Directional Movement Branches----
+        BTSequence moveNorthBranch = new BTSequence(state);
+        moveNorthBranch.pushNode(new BTCheck(nMovCheck, state));
+        moveNorthBranch.pushNode(new BTAction(moveNorth, state));
+
         BTSelector moveDirSelect = new BTSelector(state);
-        moveDirSelect.pushNode(new BTDynamicAction(moveLeft, state));
-        moveDirSelect.pushNode(new BTDynamicAction(moveRight, state));
-        moveDirSelect.pushNode(new BTDynamicAction(moveDown, state));
-        moveDirSelect.pushNode(new BTDynamicAction(moveUp, state));
+        moveDirSelect.pushNode(moveNorthBranch);
+        //moveDirSelect.pushNode(new BTDynamicAction(moveLeft, state));
+        //moveDirSelect.pushNode(new BTDynamicAction(moveRight, state));
+        //moveDirSelect.pushNode(new BTDynamicAction(moveDown, state));
+       
+        //Adding branches to root
         root.pushNode(moveDirSelect);
+
+       
+        
+        
     }
 
     public void execute()
     {
         ready = false;
         root.execute();
-        //Debug.Log("Executed with Imperiousness");
         ready = true;
     }
 
@@ -84,29 +94,24 @@ public class BehaviorTree : MonoBehaviour
     {
        
         state.distBtwn = Mathf.Abs(Vector2.Distance(state.hero.position, state.boss.position));
-        Debug.Log("AttackCheck, dist between = "+ state.distBtwn);
+        //Debug.Log("AttackCheck, dist between = "+ state.distBtwn);
         return state.distBtwn == 1f;
     }
-
-    //This I think is a Nonology for the time being
-    /*
-    // check to see if boss just attacked
-    public bool bossAttacked()
-    {
-        // did boss just launch an attack?
-        Debug.Log("BossAttack?: " + state.currTurn);
-        return state.currTurn == GameState.turn.BOSS_DECISION;
-    }
-    */
 
     // check to see if hero's square is in danger
     public bool dodgeCheck()
     {
         // get square player is on
         // is square about to be covered by bullet?
-        Debug.Log("DodgeCheck");
+        //Debug.Log("DodgeCheck");
         return state.BossAtkCheck("Hero", state.bossAtk.currAttack);
     }
+
+    bool nMovCheck(){
+        return heroControl.CheckMovePoss(HeroControl.directions.N);
+    }
+
+    
 
     /*
      ******************ACTIONS**********************
@@ -140,27 +145,41 @@ public class BehaviorTree : MonoBehaviour
         return true;
     }
 
-    public bool moveUp(){
+    bool moveNorth(){
         //Add ray check here
-        heroControl.MoveUp();
+        heroControl.MoveNorth();
         return true;
     }
 
-    public bool moveDown(){
+    bool moveSouth(){
         //Add ray check here
-        heroControl.MoveDown();
+        heroControl.MoveSouth();
         return true;
     }
 
-    public bool moveRight(){
+    bool moveEast(){
         //Add ray check here
-        heroControl.MoveRight();
+        heroControl.MoveEast();
         return true;
     }
 
-    public bool moveLeft(){
+    bool moveWest(){
         //Add ray check here
-        heroControl.MoveLeft();
+        heroControl.MoveWest();
         return true;
     }
+
+
+
 }
+ //Graveyard
+    //This I think is a never true for the time being
+    /*
+    // check to see if boss just attacked
+    public bool bossAttacked()
+    {
+        // did boss just launch an attack?
+        Debug.Log("BossAttack?: " + state.currTurn);
+        return state.currTurn == GameState.turn.BOSS_DECISION;
+    }
+    */

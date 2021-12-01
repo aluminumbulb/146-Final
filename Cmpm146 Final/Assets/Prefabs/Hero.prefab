@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4612915532350116195}
-  - component: {fileID: 4612915532350116194}
+  - component: {fileID: 7911591160822591093}
+  - component: {fileID: 1146094303410708803}
   m_Layer: 6
   m_Name: HeroMoveNW
   m_TagString: Untagged
@@ -32,8 +33,8 @@ Transform:
   m_Father: {fileID: 4612915534341608672}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &4612915532350116194
-BoxCollider2D:
+--- !u!58 &7911591160822591093
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -46,18 +47,20 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
+--- !u!114 &1146094303410708803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4612915532350116192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164a068cf197edd4a8b78952202a3db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4612915532383165090
 GameObject:
   m_ObjectHideFlags: 0
@@ -67,7 +70,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4612915532383165101}
-  - component: {fileID: 4612915532383165100}
+  - component: {fileID: 6364015663268372501}
+  - component: {fileID: 5671779368311143646}
   m_Layer: 6
   m_Name: HeroDodgeS
   m_TagString: Untagged
@@ -90,8 +94,8 @@ Transform:
   m_Father: {fileID: 4612915534341608672}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &4612915532383165100
-BoxCollider2D:
+--- !u!58 &6364015663268372501
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -104,18 +108,20 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
+--- !u!114 &5671779368311143646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4612915532383165090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164a068cf197edd4a8b78952202a3db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4612915532540653263
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,7 +131,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4612915532540653262}
-  - component: {fileID: 4612915532540653257}
+  - component: {fileID: 8507747520563172411}
+  - component: {fileID: 5017596862121293495}
   m_Layer: 6
   m_Name: HeroMoveSW
   m_TagString: Untagged
@@ -148,8 +155,8 @@ Transform:
   m_Father: {fileID: 4612915534341608672}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &4612915532540653257
-BoxCollider2D:
+--- !u!58 &8507747520563172411
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -162,18 +169,20 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
+--- !u!114 &5017596862121293495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4612915532540653263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164a068cf197edd4a8b78952202a3db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4612915532580976554
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,7 +192,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4612915532580975701}
-  - component: {fileID: 4612915532580975700}
+  - component: {fileID: 2945198898130902349}
+  - component: {fileID: 4900060136951784233}
   m_Layer: 6
   m_Name: HeroDodgeN
   m_TagString: Untagged
@@ -206,8 +216,8 @@ Transform:
   m_Father: {fileID: 4612915534341608672}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &4612915532580975700
-BoxCollider2D:
+--- !u!58 &2945198898130902349
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -220,18 +230,20 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
+--- !u!114 &4900060136951784233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4612915532580976554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164a068cf197edd4a8b78952202a3db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4612915532589791054
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,7 +253,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4612915532589791049}
-  - component: {fileID: 4612915532589791048}
+  - component: {fileID: 5838349694710662278}
+  - component: {fileID: 183286411868060422}
   m_Layer: 6
   m_Name: HeroMoveNE
   m_TagString: Untagged
@@ -264,8 +277,8 @@ Transform:
   m_Father: {fileID: 4612915534341608672}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &4612915532589791048
-BoxCollider2D:
+--- !u!58 &5838349694710662278
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -278,18 +291,20 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
+--- !u!114 &183286411868060422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4612915532589791054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164a068cf197edd4a8b78952202a3db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4612915532767138418
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,7 +460,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4612915532931049463}
-  - component: {fileID: 4612915532931049462}
+  - component: {fileID: 2293086501509499130}
+  - component: {fileID: 6733836031525970550}
   m_Layer: 6
   m_Name: HeroDodgeSW
   m_TagString: Untagged
@@ -468,8 +484,8 @@ Transform:
   m_Father: {fileID: 4612915534341608672}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &4612915532931049462
-BoxCollider2D:
+--- !u!58 &2293086501509499130
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -482,18 +498,20 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
+--- !u!114 &6733836031525970550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4612915532931049460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164a068cf197edd4a8b78952202a3db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4612915533311915426
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,7 +521,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4612915533311915437}
-  - component: {fileID: 4612915533311915436}
+  - component: {fileID: 588263175423782866}
+  - component: {fileID: 1202987228469596702}
   m_Layer: 6
   m_Name: HeroMoveE
   m_TagString: Untagged
@@ -526,8 +545,8 @@ Transform:
   m_Father: {fileID: 4612915534341608672}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &4612915533311915436
-BoxCollider2D:
+--- !u!58 &588263175423782866
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -540,18 +559,20 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
+--- !u!114 &1202987228469596702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4612915533311915426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164a068cf197edd4a8b78952202a3db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4612915533369412500
 GameObject:
   m_ObjectHideFlags: 0
@@ -561,7 +582,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4612915533369412503}
-  - component: {fileID: 4612915533369412502}
+  - component: {fileID: 8321859734591543489}
+  - component: {fileID: 4232727054901370817}
   m_Layer: 6
   m_Name: HeroDodgeW
   m_TagString: Untagged
@@ -584,8 +606,8 @@ Transform:
   m_Father: {fileID: 4612915534341608672}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &4612915533369412502
-BoxCollider2D:
+--- !u!58 &8321859734591543489
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -598,18 +620,20 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
+--- !u!114 &4232727054901370817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4612915533369412500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164a068cf197edd4a8b78952202a3db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4612915533615769978
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,7 +643,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4612915533615769957}
-  - component: {fileID: 4612915533615769956}
+  - component: {fileID: 5881935552312278365}
+  - component: {fileID: 7508025223382789433}
   m_Layer: 6
   m_Name: HeroDodgeNE
   m_TagString: Untagged
@@ -642,8 +667,8 @@ Transform:
   m_Father: {fileID: 4612915534341608672}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &4612915533615769956
-BoxCollider2D:
+--- !u!58 &5881935552312278365
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -656,18 +681,20 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
+--- !u!114 &7508025223382789433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4612915533615769978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164a068cf197edd4a8b78952202a3db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4612915533787911499
 GameObject:
   m_ObjectHideFlags: 0
@@ -677,7 +704,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4612915533787911498}
-  - component: {fileID: 4612915533787911541}
+  - component: {fileID: 634721424564123761}
+  - component: {fileID: 5023412951861397052}
   m_Layer: 6
   m_Name: HeroMoveS
   m_TagString: Untagged
@@ -700,8 +728,8 @@ Transform:
   m_Father: {fileID: 4612915534341608672}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &4612915533787911541
-BoxCollider2D:
+--- !u!58 &634721424564123761
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -714,18 +742,20 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
+--- !u!114 &5023412951861397052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4612915533787911499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164a068cf197edd4a8b78952202a3db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4612915533904313785
 GameObject:
   m_ObjectHideFlags: 0
@@ -735,7 +765,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4612915533904313784}
-  - component: {fileID: 4612915533904313787}
+  - component: {fileID: 3004972615067977899}
+  - component: {fileID: 6793919694822238840}
   m_Layer: 6
   m_Name: HeroMoveW
   m_TagString: Untagged
@@ -758,8 +789,8 @@ Transform:
   m_Father: {fileID: 4612915534341608672}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &4612915533904313787
-BoxCollider2D:
+--- !u!58 &3004972615067977899
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -772,18 +803,20 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
+--- !u!114 &6793919694822238840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4612915533904313785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164a068cf197edd4a8b78952202a3db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4612915533939878383
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,7 +826,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4612915533939878382}
-  - component: {fileID: 4612915533939878377}
+  - component: {fileID: 2150581655899035344}
+  - component: {fileID: 8540371064523013492}
   m_Layer: 6
   m_Name: HeroDodgeSE
   m_TagString: Untagged
@@ -816,8 +850,8 @@ Transform:
   m_Father: {fileID: 4612915534341608672}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &4612915533939878377
-BoxCollider2D:
+--- !u!58 &2150581655899035344
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -830,18 +864,20 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
+--- !u!114 &8540371064523013492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4612915533939878383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164a068cf197edd4a8b78952202a3db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4612915534112691615
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,7 +887,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4612915534112691614}
-  - component: {fileID: 4612915534112691609}
+  - component: {fileID: 7335765967838819967}
+  - component: {fileID: 877745860788878570}
   m_Layer: 6
   m_Name: HeroMoveN
   m_TagString: Untagged
@@ -874,8 +911,8 @@ Transform:
   m_Father: {fileID: 4612915534341608672}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &4612915534112691609
-BoxCollider2D:
+--- !u!58 &7335765967838819967
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -888,18 +925,20 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
+--- !u!114 &877745860788878570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4612915534112691615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164a068cf197edd4a8b78952202a3db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4612915534155788361
 GameObject:
   m_ObjectHideFlags: 0
@@ -909,7 +948,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4612915534155788360}
-  - component: {fileID: 4612915534155788363}
+  - component: {fileID: 1994386300513769339}
+  - component: {fileID: 4601174428774767524}
   m_Layer: 6
   m_Name: HeroDodgeNW
   m_TagString: Untagged
@@ -932,8 +972,8 @@ Transform:
   m_Father: {fileID: 4612915534341608672}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &4612915534155788363
-BoxCollider2D:
+--- !u!58 &1994386300513769339
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -946,18 +986,20 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
+--- !u!114 &4601174428774767524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4612915534155788361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164a068cf197edd4a8b78952202a3db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4612915534226129408
 GameObject:
   m_ObjectHideFlags: 0
@@ -967,7 +1009,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4612915534226129411}
-  - component: {fileID: 4612915534226129410}
+  - component: {fileID: 4218749473928205225}
+  - component: {fileID: 7105340111797827270}
   m_Layer: 6
   m_Name: HeroMoveSE
   m_TagString: Untagged
@@ -990,8 +1033,8 @@ Transform:
   m_Father: {fileID: 4612915534341608672}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &4612915534226129410
-BoxCollider2D:
+--- !u!58 &4218749473928205225
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1004,18 +1047,20 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
+--- !u!114 &7105340111797827270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4612915534226129408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164a068cf197edd4a8b78952202a3db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4612915534317138488
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,7 +1070,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4612915534317138491}
-  - component: {fileID: 4612915534317138490}
+  - component: {fileID: 2834381546412162052}
+  - component: {fileID: 6642579632508714823}
   m_Layer: 6
   m_Name: HeroDodgeE
   m_TagString: Untagged
@@ -1048,8 +1094,8 @@ Transform:
   m_Father: {fileID: 4612915534341608672}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &4612915534317138490
-BoxCollider2D:
+--- !u!58 &2834381546412162052
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1062,18 +1108,20 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
+--- !u!114 &6642579632508714823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4612915534317138488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164a068cf197edd4a8b78952202a3db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4612915534341608673
 GameObject:
   m_ObjectHideFlags: 0

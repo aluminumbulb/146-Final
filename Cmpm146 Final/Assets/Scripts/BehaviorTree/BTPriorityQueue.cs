@@ -41,10 +41,9 @@ public class BTPriorityQueue
         foreach(BTNode node in pq)
         {
             //We're attempting to get the priority as close to zero as possible
+            //So we take the absolute value, such that minimum is closer to zero, not infinitely negative
 
-            //node.priority = Mathf.Abs(gs.transDeltX() * node.aveDeltX) + Mathf.Abs(gs.transDeltY() * node.aveDeltY); //+ gs.bossHealth * node.aveDeltHealth;
-            node.priority = Mathf.Abs(gs.transDeltX() + node.aveDeltX) + Mathf.Abs(gs.transDeltY() + node.aveDeltY); //+ gs.bossHealth * node.aveDeltHealth;
-            Debug.Log("New node priority: "+node.priority);
+            node.priority = Mathf.Abs(gs.transDeltX() + node.aveDeltX) + Mathf.Abs(gs.transDeltY() + node.aveDeltY); //+ gs.bossHealth * node.aveDeltHealth;;
         }
         //Taken from: https://answers.unity.com/questions/677070/sorting-a-list-linq.html
         //pq.Sort((e1, e2) => e2.priority.CompareTo(e1.priority));//biggest to smallest

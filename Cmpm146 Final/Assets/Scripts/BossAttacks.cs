@@ -177,7 +177,6 @@ public class BossAttacks : MonoBehaviour
             Gizmos.DrawWireCube(centerPoint.position, new Vector3(2, beamLength, 1));
             Gizmos.DrawWireCube(centerPoint.position, new Vector3(beamLength, 2, 1));
         }
-        
 
     }
 }
