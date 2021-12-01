@@ -46,15 +46,53 @@ public class BehaviorTree : MonoBehaviour
         moveNorthBranch.pushNode(new BTCheck(nMovCheck, state));//Can I move there?
         moveNorthBranch.pushNode(new BTAction(moveNorth, state));//Try to move there.
 
-      
+        BTSequence moveSouthBranch = new BTSequence(state);
+        moveSouthBranch.pushNode(new BTCheck(sMovCheck, state));//Can I move there?
+        moveSouthBranch.pushNode(new BTAction(moveSouth, state));//Try to move there.
+
+        BTSequence moveEastBranch = new BTSequence(state);
+        moveEastBranch.pushNode(new BTCheck(eMovCheck, state));//Can I move there?
+        moveEastBranch.pushNode(new BTAction(moveEast, state));//Try to move there.
+
+        BTSequence moveWestBranch = new BTSequence(state);
+        moveWestBranch.pushNode(new BTCheck(wMovCheck, state));//Can I move there?
+        moveWestBranch.pushNode(new BTAction(moveWest, state));//Try to move there.
+
+        //---Dodge Branches---
+        BTSequence dodgeNorthBranch = new BTSequence(state);
+        dodgeNorthBranch.pushNode(new BTCheck(nDodgeCheck, state));//Can I move there?
+        dodgeNorthBranch.pushNode(new BTAction(dodgeNorth, state));//Try to move there.
+
+        BTSequence dodgeSouthBranch = new BTSequence(state);
+        dodgeSouthBranch.pushNode(new BTCheck(sDodgeCheck, state));//Can I move there?
+        dodgeSouthBranch.pushNode(new BTAction(dodgeSouth, state));//Try to move there.
+
+        BTSequence dodgeEastBranch = new BTSequence(state);
+        dodgeEastBranch.pushNode(new BTCheck(eDodgeCheck, state));//Can I move there?
+        dodgeEastBranch.pushNode(new BTAction(dodgeEast, state));//Try to move there.
+
+        BTSequence dodgeWestBranch = new BTSequence(state);
+        dodgeWestBranch.pushNode(new BTCheck(wDodgeCheck, state));//Can I move there?
+        dodgeWestBranch.pushNode(new BTAction(dodgeWest, state));//Try to move there.
+        
         BTSelector moveDirSelect = new BTSelector(state);
         moveDirSelect.pushNode(moveNorthBranch);
+        moveDirSelect.pushNode(moveSouthBranch);
+        moveDirSelect.pushNode(moveEastBranch);
+        moveDirSelect.pushNode(moveWestBranch);
         //moveDirSelect.pushNode(new BTDynamicAction(moveLeft, state));
         //moveDirSelect.pushNode(new BTDynamicAction(moveRight, state));
         //moveDirSelect.pushNode(new BTDynamicAction(moveDown, state));
+
+        BTSelector dodgeDirSelect = new BTSelector(state);
+        dodgeDirSelect.pushNode(dodgeNorthBranch);
+        dodgeDirSelect.pushNode(dodgeSouthBranch);
+        dodgeDirSelect.pushNode(dodgeEastBranch);
+        dodgeDirSelect.pushNode(dodgeWestBranch);
        
         //---------Adding branches to root----------
         root.pushNode(moveDirSelect);
+        root.pushNode(dodgeDirSelect);
 
     }
 
@@ -107,6 +145,34 @@ public class BehaviorTree : MonoBehaviour
 
     bool nMovCheck(){
         return heroControl.CheckMovePoss(HeroControl.directions.N);
+    }
+
+    bool sMovCheck(){
+        return heroControl.CheckMovePoss(HeroControl.directions.S);
+    }
+
+    bool eMovCheck(){
+        return heroControl.CheckMovePoss(HeroControl.directions.E);
+    }
+
+    bool wMovCheck(){
+        return heroControl.CheckMovePoss(HeroControl.directions.W);
+    }
+
+    bool nDodgeCheck(){
+        return heroControl.CheckDodgePoss(HeroControl.directions.N);
+    }
+
+    bool sDodgeCheck(){
+        return heroControl.CheckDodgePoss(HeroControl.directions.S);
+    }
+
+    bool eDodgeCheck(){
+        return heroControl.CheckDodgePoss(HeroControl.directions.E);
+    }
+
+    bool wDodgeCheck(){
+        return heroControl.CheckDodgePoss(HeroControl.directions.W);
     }
 
     
@@ -167,7 +233,29 @@ public class BehaviorTree : MonoBehaviour
         return true;
     }
 
+    bool dodgeNorth(){
+        //Add ray check here
+        heroControl.DodgeNorth();
+        return true;
+    }
 
+    bool dodgeSouth(){
+        //Add ray check here
+        heroControl.DodgeSouth();
+        return true;
+    }
+
+    bool dodgeEast(){
+        //Add ray check here
+        heroControl.DodgeEast();
+        return true;
+    }
+    
+    bool dodgeWest(){
+        //Add ray check here
+        heroControl.DodgeWest();
+        return true;
+    }
 
 }
  //Graveyard
