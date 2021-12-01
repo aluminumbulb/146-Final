@@ -43,21 +43,19 @@ public class BehaviorTree : MonoBehaviour
 
         //----Directional Movement Branches----
         BTSequence moveNorthBranch = new BTSequence(state);
-        moveNorthBranch.pushNode(new BTCheck(nMovCheck, state));
-        moveNorthBranch.pushNode(new BTAction(moveNorth, state));
+        moveNorthBranch.pushNode(new BTCheck(nMovCheck, state));//Can I move there?
+        moveNorthBranch.pushNode(new BTAction(moveNorth, state));//Try to move there.
 
+      
         BTSelector moveDirSelect = new BTSelector(state);
         moveDirSelect.pushNode(moveNorthBranch);
         //moveDirSelect.pushNode(new BTDynamicAction(moveLeft, state));
         //moveDirSelect.pushNode(new BTDynamicAction(moveRight, state));
         //moveDirSelect.pushNode(new BTDynamicAction(moveDown, state));
        
-        //Adding branches to root
+        //---------Adding branches to root----------
         root.pushNode(moveDirSelect);
 
-       
-        
-        
     }
 
     public void execute()
