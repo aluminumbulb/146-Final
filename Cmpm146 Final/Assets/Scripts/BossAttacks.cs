@@ -16,6 +16,11 @@ public class BossAttacks : MonoBehaviour
     public bool showAOE = true;
     public string currAttack;
     public bool inputGiven;
+    private HeroControl heroControl;
+    
+    private void Start() {
+        heroControl = FindObjectOfType<HeroControl>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -46,9 +51,10 @@ public class BossAttacks : MonoBehaviour
             inputGiven = true;
             AOE("Hero");
         }
-
-        inputGiven = false;
     }
+
+
+
     public bool SwipeRight(string obj)
     {
         //Play animation 
@@ -65,6 +71,7 @@ public class BossAttacks : MonoBehaviour
             }
             if (Hero.name == obj)
             {
+                heroControl.heroHit();
                 return true;
             }
         }
@@ -87,6 +94,7 @@ public class BossAttacks : MonoBehaviour
             }
             if (Hero.name == obj)
             {
+                heroControl.heroHit();
                 return true;
             }
         }
@@ -109,6 +117,7 @@ public class BossAttacks : MonoBehaviour
             }
             if (Hero.name == obj)
             {
+                heroControl.heroHit();
                 return true;
             }
         }
@@ -130,6 +139,7 @@ public class BossAttacks : MonoBehaviour
             }
             if (Hero.name == obj)
             {
+                heroControl.heroHit();
                 return true;
             }
         }
@@ -144,6 +154,7 @@ public class BossAttacks : MonoBehaviour
             }
             if (Hero.name == obj)
             {
+                heroControl.heroHit();
                 return true;
             }
         }

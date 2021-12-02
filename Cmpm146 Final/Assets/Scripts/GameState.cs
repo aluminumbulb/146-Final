@@ -16,6 +16,7 @@ public class GameState : MonoBehaviour
     public BossAttacks bossAtk;
     HeroZones HeroZone;
     public Movement heroMove;
+    private HeroControl heroControl;
     private float prevBossHealth, currBossHealth;
     private Vector2 prevHeroPos, currHeroPos;
     public float lightDmg = 10;
@@ -33,6 +34,7 @@ public class GameState : MonoBehaviour
         bossAtk = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossAttacks>();
         HeroZone = FindObjectOfType<HeroZones>();
         heroMove = GameObject.FindObjectOfType<Movement>();
+        heroControl = FindObjectOfType<HeroControl>();
 
         currHeroPos = prevHeroPos = hero.position;
         currBossHealth = prevBossHealth = bossHealth;
@@ -63,35 +65,25 @@ public class GameState : MonoBehaviour
         {
             if (currTurn == turn.BOSS_DECISION)
             {
-                //Debug.Log("Boss Decision Turn");
                 // Wait for user to confirm their input
-                // this infinite loops, whoops
-                /*
-                bool done = false;
-                while (!done)
+                while (!bossAtk.inputGiven)
                 {
-                    if (bossAtk.inputGiven)
-                    {
-                        done = true;
-                        currTurn = turn.HERO_DECISION;
-                    }
+                    yield return null;
                 }
-                yield return null;
-                */
+                
+                bossAtk.inputGiven = false;//Reset input given here to allow for this function to read it
                 currTurn = turn.HERO_DECISION;
             }
 
             if(currTurn == turn.HERO_DECISION)
             {
                 distBtwn = Vector3.Distance(hero.position, boss.position);
-                //Debug.Log("Hero Decision Turn");
                 bt.execute();
                 currTurn = turn.ACTION;
             }
 
             if(currTurn == turn.ACTION)
             {
-                //Debug.Log("Time for Action");
                 //At this phase, we should check the result of the boss' move on the hero
                 currTurn = turn.BOSS_DECISION;
             }

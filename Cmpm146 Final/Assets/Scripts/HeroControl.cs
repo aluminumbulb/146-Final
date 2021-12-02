@@ -12,10 +12,22 @@ public class HeroControl : MonoBehaviour
     public AreaChecker[] moveZones;
     public AreaChecker[] dodgeZones; 
     public float moveDist = 1f, dodgeDist = 2f;
+    Vector3 heroStart;
     // Start is called before the first frame update
     void Start()
     {
-        
+        heroStart = transform.position;
+    }
+
+    //Determines result of hero taking damage
+    public void heroHit(){
+        respawn();
+    }
+
+    //Places the hero back to where they started 
+    //Functions as "Death"
+    public void respawn(){
+        transform.position = heroStart;
     }
 
     public void MoveNorth(){
