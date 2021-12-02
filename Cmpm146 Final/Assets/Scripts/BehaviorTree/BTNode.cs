@@ -92,7 +92,10 @@ public class BTDynamicAction : BTNode
         base.setBeforeValues();
         bool response = del();//Perform the check
         base.setAfterValues();
-        base.trainingFunction();
+        //We only want to train on successful operations
+        if(response){
+            base.trainingFunction();
+        }
         return response;
     }
 }
@@ -138,13 +141,13 @@ public class BTSelector : BTNode
             //if (node.execute())
             if(response)
             {
-                //Debug.Log("Node successfully Executed");
-                //response = true;
+                //Update values only on successful action
+                base.setAfterValues();
+                base.trainingFunction();//update priority
                 break;
             }
         }
-        base.setAfterValues();
-        base.trainingFunction();//update priority
+
         return response;
     }
 
@@ -182,8 +185,11 @@ public class BTSequence : BTNode
                 break;
             }
         }
-        base.setAfterValues();
-        base.trainingFunction();//update priority
+        //Only update values on successful execution
+        if(response){
+            base.setAfterValues();
+            base.trainingFunction();//update priority
+        }
         return response;
     }
 
@@ -209,25 +215,17 @@ public class BTStaticSelector : BTNode
 
     public override bool execute()
     {
-        bool response = false;//Perform the check
-        btq.reorganize(base.gs);
-        //Iterate through every node in order
-        base.setBeforeValues();
+        bool response = false;
+        btq.reorganize(base.gs);//Still reorganizes children!
+        
         foreach (BTNode node in btq.getPQ())
         {
-            //Debug.Log("BT Selector Executing a Node");
-            //Attempt to execute the underlying node
-            //return true as soon as a selected node has succeeded
             response = node.execute();
-            //if (node.execute())
             if(response)
             {
-                //Debug.Log("Node successfully Executed");
-                //response = true;
                 break;
             }
         }
-        base.setAfterValues();
         return response;
     }
 
@@ -248,24 +246,15 @@ public class BTStaticSequence : BTNode
 
     public override bool execute()
     {
-        bool response = true;//Perform the check
+        bool response = true;
         btq.reorganize(base.gs);
-        //Iterate through every node in order
-        base.setBeforeValues();
         foreach (BTNode node in btq.getPQ())
         {
-            //Debug.Log("BT Sequence Executing a Node");
-            //Attempt to execute the underlying node
-            //return true as soon as a selected node has succeeded
-            response = node.execute();
             if (!response)
             {
-                //response = true;
-                //Debug.Log("Sequence Encountered Failure");
                 break;
             }
         }
-        base.setAfterValues();
         return response;
     }
 

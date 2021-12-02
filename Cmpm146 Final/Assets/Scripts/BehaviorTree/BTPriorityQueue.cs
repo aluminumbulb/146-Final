@@ -40,14 +40,13 @@ public class BTPriorityQueue
     {
         foreach(BTNode node in pq)
         {
-            //We're attempting to get the priority as close to zero as possible
-            //So we take the absolute value, such that minimum is closer to zero, not infinitely negative
 
-            //An inelegent way to get around the problem of getting stuck
-            //If we don't know any of the properties of something, keep trying to use it.
-            if((Mathf.Abs(node.aveDeltX) + Mathf.Abs(node.aveDeltY) + Mathf.Abs(node.aveDeltHealth)) == 0){
+
+            if(node.totalUses == 0){
                 node.priority = 0;
             }else{
+            //We're attempting to get the priority as close to zero as possible
+            //So we take the absolute value, such that minimum is closer to zero, not infinitely negative
                 node.priority = 
             //Adding the amount of changes that need to be made with the amound we can change them
                 (Mathf.Abs(gs.transDeltX() + node.aveDeltX)

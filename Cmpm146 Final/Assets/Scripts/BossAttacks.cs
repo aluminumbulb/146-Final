@@ -28,28 +28,24 @@ public class BossAttacks : MonoBehaviour
         {
             currAttack = "SwipeRight";
             inputGiven = true;
-            //SwipeRight("Hero");
         }
 
         if (Input.GetKeyDown(KeyCode.X))
         {
             currAttack = "SwipeLeft";
             inputGiven = true;
-            //SwipeLeft("Hero");
         }
 
         if (Input.GetKeyDown(KeyCode.C))
         {
             currAttack = "Beams";
             inputGiven = true;
-            //Beams("Hero");
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             currAttack = "AOE";
             inputGiven = true;
-            //AOE("Hero");
         }
     }
 
@@ -71,7 +67,6 @@ public class BossAttacks : MonoBehaviour
             }
             if (Hero.name == obj)
             {
-                heroControl.heroHit();
                 return true;
             }
         }
@@ -94,7 +89,6 @@ public class BossAttacks : MonoBehaviour
             }
             if (Hero.name == obj)
             {
-                heroControl.heroHit();
                 return true;
             }
         }
@@ -117,7 +111,6 @@ public class BossAttacks : MonoBehaviour
             }
             if (Hero.name == obj)
             {
-                heroControl.heroHit();
                 return true;
             }
         }
@@ -139,7 +132,6 @@ public class BossAttacks : MonoBehaviour
             }
             if (Hero.name == obj)
             {
-                heroControl.heroHit();
                 return true;
             }
         }
@@ -154,7 +146,6 @@ public class BossAttacks : MonoBehaviour
             }
             if (Hero.name == obj)
             {
-                heroControl.heroHit();
                 return true;
             }
         }
