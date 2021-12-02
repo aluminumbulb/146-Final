@@ -28,28 +28,28 @@ public class BossAttacks : MonoBehaviour
         {
             currAttack = "SwipeRight";
             inputGiven = true;
-            SwipeRight("Hero");
+            //SwipeRight("Hero");
         }
 
         if (Input.GetKeyDown(KeyCode.X))
         {
             currAttack = "SwipeLeft";
             inputGiven = true;
-            SwipeLeft("Hero");
+            //SwipeLeft("Hero");
         }
 
         if (Input.GetKeyDown(KeyCode.C))
         {
             currAttack = "Beams";
             inputGiven = true;
-            Beams("Hero");
+            //Beams("Hero");
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             currAttack = "AOE";
             inputGiven = true;
-            AOE("Hero");
+            //AOE("Hero");
         }
     }
 

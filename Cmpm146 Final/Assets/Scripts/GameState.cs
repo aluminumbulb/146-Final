@@ -70,7 +70,7 @@ public class GameState : MonoBehaviour
                 {
                     yield return null;
                 }
-                
+                //From this point we assume the Boss's "curr attack" string is filled
                 bossAtk.inputGiven = false;//Reset input given here to allow for this function to read it
                 currTurn = turn.HERO_DECISION;
             }
@@ -85,12 +85,14 @@ public class GameState : MonoBehaviour
             if(currTurn == turn.ACTION)
             {
                 //At this phase, we should check the result of the boss' move on the hero
+                BossAtkCheck("Hero", bossAtk.currAttack);
                 currTurn = turn.BOSS_DECISION;
+                bossAtk.currAttack = "";//Resets to nothing after current attack has been successfully read
             }
             //Test to slow everything down for better analysis:
             yield return new WaitForSeconds(secPerTurn);
         }
-        Debug.Log("Exited pipe");
+        Debug.Log("Game Over");
         StopAllCoroutines();
     }
 
