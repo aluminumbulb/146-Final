@@ -21,6 +21,7 @@ public class HeroControl : MonoBehaviour
 
     //Determines result of hero taking damage
     public void heroHit(){
+        Debug.Log("Hero Hit!");
         respawn();
     }
 
@@ -39,7 +40,9 @@ public class HeroControl : MonoBehaviour
     }
     
     public void MoveWest(){
-        transform.position -= transform.right * moveDist;
+        //transform.position -= transform.right * moveDist;
+        Debug.Log("Moved west");
+        transform.position = moveZones[(int)directions.W].transform.position;
     }
 
     public void MoveEast(){
@@ -65,11 +68,19 @@ public class HeroControl : MonoBehaviour
     //Takes in the cardinal direction we want to check
     public bool CheckMovePoss(directions dir){
         //Indexes the proper moveZone in that direction for danger
+        Debug.Log("Move Check "+dir+ " for danger");
+        if(moveZones[(int)dir].checkDanger()){//Just a test
+            Debug.Log("Move "+dir+" is clear");
+        }
         return moveZones[(int)dir].checkDanger();
     }
 
     public bool CheckDodgePoss(directions dir){
+        Debug.Log("Dodge Check "+dir+ " for danger");
         //Indexes the proper moveZone in that direction for danger
+        if(dodgeZones[(int)dir].checkDanger()){//Just a test
+            Debug.Log("Doodge "+dir+" is clear");
+        }
         return dodgeZones[(int)dir].checkDanger();
     }
 

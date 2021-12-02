@@ -35,12 +35,14 @@ public class BehaviorTree : MonoBehaviour
         heavyAttackBranch.pushNode(new BTAction(heavyAttack, state));
         root.pushNode(heavyAttackBranch);
 
+        /*
         BTSequence dodgeBranch = new BTSequence(state);
         //dodgeBranch.pushNode(new BTCheck(bossAttacked, state));
         dodgeBranch.pushNode(new BTCheck(dodgeCheck, state));
         dodgeBranch.pushNode(new BTAction(moveToSafety, state));
         root.pushNode(dodgeBranch);
-
+        */
+        
         //----Directional Movement Branches----
         BTSequence moveNorthBranch = new BTSequence(state);
         moveNorthBranch.pushNode(new BTCheck(nMovCheck, state));//Can I move there?

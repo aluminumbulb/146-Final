@@ -65,6 +65,7 @@ public class GameState : MonoBehaviour
         {
             if (currTurn == turn.BOSS_DECISION)
             {
+                Debug.Log("Boss Turn");
                 // Wait for user to confirm their input
                 while (!bossAtk.inputGiven)
                 {
@@ -73,17 +74,15 @@ public class GameState : MonoBehaviour
                 //From this point we assume the Boss's "curr attack" string is filled
                 bossAtk.inputGiven = false;//Reset input given here to allow for this function to read it
                 currTurn = turn.HERO_DECISION;
-            }
-
-            if(currTurn == turn.HERO_DECISION)
+            }else if(currTurn == turn.HERO_DECISION)
             {
+                 Debug.Log("HeroTurn");
                 distBtwn = Vector3.Distance(hero.position, boss.position);
                 bt.execute();
                 currTurn = turn.ACTION;
-            }
-
-            if(currTurn == turn.ACTION)
+            }else if(currTurn == turn.ACTION)
             {
+                 Debug.Log("Action Turn");
                 //At this phase, we should check the result of the boss' move on the hero
                 if(BossAtkCheck("Hero", bossAtk.currAttack)){
                     heroControl.heroHit();
@@ -137,15 +136,11 @@ public class GameState : MonoBehaviour
         return false;
     }
 
-
     /*
         Returns X difference between hero and boss
     */
     public float transDeltX()
     {
-        //The amount that needs to be done, constrained, times the amound it might help
-        //Same signs should maximize the value, while opposing signs will minimize it
-        //(i.e. preferred direction should arise)
         float xDiff = hero.position.x - boss.position.x;
         return xDiff;
     }
