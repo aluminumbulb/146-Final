@@ -65,7 +65,7 @@ public class GameState : MonoBehaviour
         {
             if (currTurn == turn.BOSS_DECISION)
             {
-                Debug.Log("Boss Turn");
+                //Debug.Log("Boss Turn");
                 // Wait for user to confirm their input
                 while (!bossAtk.inputGiven)
                 {
@@ -76,13 +76,13 @@ public class GameState : MonoBehaviour
                 currTurn = turn.HERO_DECISION;
             }else if(currTurn == turn.HERO_DECISION)
             {
-                 Debug.Log("HeroTurn");
+                //Debug.Log("HeroTurn");
                 distBtwn = Vector3.Distance(hero.position, boss.position);
                 bt.execute();
                 currTurn = turn.ACTION;
             }else if(currTurn == turn.ACTION)
             {
-                 Debug.Log("Action Turn");
+                //Debug.Log("Action Turn");
                 //At this phase, we should check the result of the boss' move on the hero
                 if(BossAtkCheck("Hero", bossAtk.currAttack)){
                     heroControl.heroHit();
