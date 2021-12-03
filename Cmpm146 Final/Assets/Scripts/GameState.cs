@@ -92,6 +92,7 @@ public class GameState : MonoBehaviour
             }
             //Test to slow everything down for better analysis:
             yield return new WaitForSeconds(secPerTurn);
+            bossAtk.clearRends();
         }
         Debug.Log("Game Over");
         StopAllCoroutines();

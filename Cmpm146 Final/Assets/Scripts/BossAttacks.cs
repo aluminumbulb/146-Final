@@ -17,7 +17,12 @@ public class BossAttacks : MonoBehaviour
     public string currAttack;
     public bool inputGiven;
     private HeroControl heroControl;
-    
+    public Renderer AOERenderer;
+    public Renderer swipeLeftRenderer;
+    public Renderer swipeRightRenderer;
+    public Renderer beamsRenderer;
+    public Renderer beamsRenderer2;
+
     private void Start() {
         heroControl = FindObjectOfType<HeroControl>();
     }
@@ -54,10 +59,11 @@ public class BossAttacks : MonoBehaviour
     public bool SwipeRight(string obj)
     {
         //Play animation 
+        swipeRightRenderer.enabled = true;
 
         //collect the objects hit
         Collider2D[] hitHero = Physics2D.OverlapBoxAll(swipeRightPoint.position, new Vector2(swipeSize, swipeSize+1), 0,enemyLayers);
-        
+
         //send meesage to Hero/ hit the Hero
         foreach (Collider2D Hero in hitHero)
         {
@@ -76,6 +82,7 @@ public class BossAttacks : MonoBehaviour
     public bool SwipeLeft(string obj)
     {
         //Play animation 
+        swipeLeftRenderer.enabled = true;
 
         //collect the objects hit
         Collider2D[] hitHero = Physics2D.OverlapBoxAll(swipeLeftPoint.position, new Vector2(swipeSize, swipeSize+1), 0, enemyLayers);
@@ -98,6 +105,7 @@ public class BossAttacks : MonoBehaviour
     public bool AOE(string obj)
     {
         //Play animation 
+        AOERenderer.enabled = true;
 
         //collect the objects hit
         Collider2D[] hitHero = Physics2D.OverlapBoxAll(centerPoint.position, new Vector2(aoeSize, aoeSize), 0, enemyLayers);
@@ -120,9 +128,12 @@ public class BossAttacks : MonoBehaviour
     public bool Beams(string obj)
     {
         //Play animation 
+        beamsRenderer.enabled = true;
+        beamsRenderer2.enabled = true;
 
         //collect the objects hit
         Collider2D[] hitHero = Physics2D.OverlapBoxAll(centerPoint.position, new Vector2(beamLength, 1), 0, enemyLayers);
+
         //send meesage to Hero/ hit the Hero
         foreach (Collider2D Hero in hitHero)
         {
@@ -180,5 +191,14 @@ public class BossAttacks : MonoBehaviour
             Gizmos.DrawWireCube(centerPoint.position, new Vector3(beamLength, 2, 1));
         }
 
+    }
+
+    public void clearRends()
+    {
+        swipeRightRenderer.enabled = false;
+        swipeLeftRenderer.enabled = false;
+        AOERenderer.enabled = false;
+        beamsRenderer.enabled = false;
+        beamsRenderer2.enabled = false;
     }
 }
