@@ -26,22 +26,16 @@ public class BehaviorTree : MonoBehaviour
         root = new BTSelector(state);
 
         BTSequence lightAttackBranch = new BTSequence(state);
+        lightAttackBranch.pushNode(new BTCheck(dodgeCheck, state));
         lightAttackBranch.pushNode(new BTCheck(attackCheck, state));
         lightAttackBranch.pushNode(new BTAction(lightAttack, state));
         root.pushNode(lightAttackBranch);
 
         BTSequence heavyAttackBranch = new BTSequence(state);
+        lightAttackBranch.pushNode(new BTCheck(dodgeCheck, state));
         heavyAttackBranch.pushNode(new BTCheck(attackCheck, state));
         heavyAttackBranch.pushNode(new BTAction(heavyAttack, state));
         root.pushNode(heavyAttackBranch);
-
-        /*
-        BTSequence dodgeBranch = new BTSequence(state);
-        //dodgeBranch.pushNode(new BTCheck(bossAttacked, state));
-        dodgeBranch.pushNode(new BTCheck(dodgeCheck, state));
-        dodgeBranch.pushNode(new BTAction(moveToSafety, state));
-        root.pushNode(dodgeBranch);
-        */
         
         //----Directional Movement Branches----
         BTSequence moveNorthBranch = new BTSequence(state);
@@ -158,7 +152,6 @@ public class BehaviorTree : MonoBehaviour
     {
         // get square player is on
         // is square about to be covered by bullet?
-        //Debug.Log("DodgeCheck");
         return state.BossAtkCheck("Hero", state.bossAtk.currAttack);
     }
 

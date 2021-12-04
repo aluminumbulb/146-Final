@@ -10,13 +10,13 @@ public class HeroControl : MonoBehaviour
 {
     public enum directions{N,NE,E,SE,S,SW,W,NW};
     public AreaChecker[] moveZones;
-    public AreaChecker[] dodgeZones; 
-    public float moveDist = 1f, dodgeDist = 2f;
+    public AreaChecker[] dodgeZones;
     Vector3 heroStart;
     // Start is called before the first frame update
     void Start()
     {
         heroStart = transform.position;
+        Debug.Log("Hero start set to: "+heroStart);
     }
 
     //Determines result of hero taking damage
@@ -38,41 +38,6 @@ public class HeroControl : MonoBehaviour
     public void DodgeDirection(directions dir){
         transform.position = dodgeZones[(int)dir].transform.position;
     }
-
-
-    /*
-    public void MoveNorth(){
-        transform.position += transform.up * moveDist;
-    }
-
-    public void MoveSouth(){
-        transform.position -= transform.up * moveDist;
-    }
-    
-    public void MoveWest(){
-        transform.position -= transform.right * moveDist;
-    }
-
-    public void MoveEast(){
-        transform.position += transform.right * moveDist;
-    }
-
-    public void DodgeNorth(){
-        transform.position += transform.up * dodgeDist;
-    }
-    
-    public void DodgeSouth(){
-        transform.position -= transform.up * dodgeDist;
-    }
-    
-    public void DodgeWest(){
-        transform.position -= transform.right * dodgeDist;
-    }
-    
-    public void DodgeEast(){
-        transform.position += transform.right * dodgeDist;
-    }
-    */
 
     //Takes in the cardinal direction we want to check
     public bool CheckMovePoss(directions dir){
