@@ -977,6 +977,14 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4612915532589791049, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4612915532589791049, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4612915532767138418, guid: 5427832a4b346564c908b33d4e80af8d, type: 3}
       propertyPath: m_Name
       value: Hero

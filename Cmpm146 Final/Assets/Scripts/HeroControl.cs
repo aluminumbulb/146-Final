@@ -30,6 +30,17 @@ public class HeroControl : MonoBehaviour
         transform.position = heroStart;
     }
 
+    //Uses the movement checkers for a more accurate guide as to where it's moving
+    public void MoveDirection(directions dir){
+        transform.position = moveZones[(int)dir].transform.position;
+    }
+
+    public void DodgeDirection(directions dir){
+        transform.position = dodgeZones[(int)dir].transform.position;
+    }
+
+
+    /*
     public void MoveNorth(){
         transform.position += transform.up * moveDist;
     }
@@ -61,6 +72,7 @@ public class HeroControl : MonoBehaviour
     public void DodgeEast(){
         transform.position += transform.right * dodgeDist;
     }
+    */
 
     //Takes in the cardinal direction we want to check
     public bool CheckMovePoss(directions dir){
