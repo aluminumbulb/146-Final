@@ -52,9 +52,18 @@ public class BossAttacks : MonoBehaviour
             currAttack = "AOE";
             inputGiven = true;
         }
+
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            currAttack = "Nothing";
+            inputGiven = true;
+        }
     }
 
-
+    public bool Nothing(string obj)
+    {
+        return false;
+    }
 
     public bool SwipeRight(string obj)
     {

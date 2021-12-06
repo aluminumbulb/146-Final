@@ -142,9 +142,10 @@ public class BehaviorTree : MonoBehaviour
     // attackCheck to see if hero in range for attack
     public bool attackCheck()
     {
-        state.distBtwn = Mathf.Abs(Vector2.Distance(state.hero.position, state.boss.position));
-        //Debug.Log("AttackCheck, dist between = "+ state.distBtwn);
-        return state.distBtwn <= 3;
+        //state.distBtwn = Mathf.Abs(Vector2.Distance(state.hero.position, state.boss.position));
+        Debug.Log("AttackCheck, dist between = "+ state.distBtwn);
+        //Debug.Log("Check passed: " + state.HeroAtkCheck("Boss"));
+        return state.distBtwn <= 3;//state.HeroAtkCheck("Boss");
     }
 
     // check to see if hero's square is in danger
