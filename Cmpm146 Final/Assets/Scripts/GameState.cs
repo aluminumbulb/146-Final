@@ -86,6 +86,7 @@ public class GameState : MonoBehaviour
                 //At this phase, we should check the result of the boss' move on the hero
                 if(BossAtkCheck("Hero", bossAtk.currAttack)){
                     heroControl.heroHit();
+                    currBossHealth = prevBossHealth = bossHealth = 100;
                 }
                 currTurn = turn.BOSS_DECISION;
                 bossAtk.currAttack = "";//Resets to nothing after current attack has been successfully read
