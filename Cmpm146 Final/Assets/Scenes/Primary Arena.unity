@@ -4954,6 +4954,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1541494517}
     - target: {fileID: 7521948410892084336, guid: 7eaa772152f5a194bb55d91612db4191, type: 3}
+      propertyPath: sl_cooldown
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7521948410892084336, guid: 7eaa772152f5a194bb55d91612db4191, type: 3}
+      propertyPath: sr_cooldown
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7521948410892084336, guid: 7eaa772152f5a194bb55d91612db4191, type: 3}
+      propertyPath: aoe_cooldown
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7521948410892084336, guid: 7eaa772152f5a194bb55d91612db4191, type: 3}
       propertyPath: beamsRenderer
       value: 
       objectReference: {fileID: 787507872}
@@ -4961,6 +4973,10 @@ PrefabInstance:
       propertyPath: beamsRenderer2
       value: 
       objectReference: {fileID: 601022511}
+    - target: {fileID: 7521948410892084336, guid: 7eaa772152f5a194bb55d91612db4191, type: 3}
+      propertyPath: beams_cooldown
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7521948410892084336, guid: 7eaa772152f5a194bb55d91612db4191, type: 3}
       propertyPath: swipeLeftRenderer
       value: 

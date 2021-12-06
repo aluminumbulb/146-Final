@@ -22,35 +22,63 @@ public class BossAttacks : MonoBehaviour
     public Renderer swipeRightRenderer;
     public Renderer beamsRenderer;
     public Renderer beamsRenderer2;
+    public int aoe_cooldown = 3;
+    public int sl_cooldown = 3;
+    public int sr_cooldown = 3;
+    public int beams_cooldown = 3;
+    int aoeCurrCool;
+    int slCurrCool;
+    int srCurrCool;
+    int beamsCurrCool;
 
     private void Start() {
         heroControl = FindObjectOfType<HeroControl>();
+        aoeCurrCool = aoe_cooldown;
+        slCurrCool = sl_cooldown;
+        srCurrCool = sr_cooldown;
+        beamsCurrCool = beams_cooldown;
     }
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.X))
         {
-            currAttack = "SwipeRight";
-            inputGiven = true;
+            if (sr_cooldown == srCurrCool)
+            {
+                currAttack = "SwipeRight";
+                inputGiven = true;
+                srCurrCool = 0;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            currAttack = "SwipeLeft";
-            inputGiven = true;
+            if (sl_cooldown == slCurrCool)
+            {
+                currAttack = "SwipeLeft";
+                inputGiven = true;
+                slCurrCool = 0;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.C))
         {
-            currAttack = "Beams";
-            inputGiven = true;
+            if (beams_cooldown == beamsCurrCool)
+            {
+                currAttack = "Beams";
+                inputGiven = true;
+                beamsCurrCool = 0;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.V))
         {
-            currAttack = "AOE";
-            inputGiven = true;
+            if (aoe_cooldown == aoeCurrCool)
+            {
+                currAttack = "AOE";
+                inputGiven = true;
+                aoeCurrCool = 0;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -58,6 +86,14 @@ public class BossAttacks : MonoBehaviour
             currAttack = "Nothing";
             inputGiven = true;
         }
+    }
+
+    public void tickdown()
+    {
+        if (aoe_cooldown > aoeCurrCool) { aoeCurrCool += 1; }
+        if (sl_cooldown > slCurrCool) { slCurrCool += 1; }
+        if (sr_cooldown > srCurrCool) { srCurrCool += 1; }
+        if (beams_cooldown > beamsCurrCool) { beamsCurrCool += 1; }
     }
 
     public bool Nothing(string obj)

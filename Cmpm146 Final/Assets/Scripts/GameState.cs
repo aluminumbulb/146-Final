@@ -67,6 +67,7 @@ public class GameState : MonoBehaviour
             {
                 //Debug.Log("Boss Turn");
                 // Wait for user to confirm their input
+                bossAtk.tickdown();
                 while (!bossAtk.inputGiven)
                 {
                     yield return null;
@@ -87,6 +88,10 @@ public class GameState : MonoBehaviour
                 if(BossAtkCheck("Hero", bossAtk.currAttack)){
                     heroControl.heroHit();
                     currBossHealth = prevBossHealth = bossHealth = 100;
+                    for(int i = 3; i > 0; i -= 1)
+                    {
+                        bossAtk.tickdown();
+                    }
                 }
                 currTurn = turn.BOSS_DECISION;
                 bossAtk.currAttack = "";//Resets to nothing after current attack has been successfully read
