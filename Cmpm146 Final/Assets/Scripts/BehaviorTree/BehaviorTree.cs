@@ -144,7 +144,7 @@ public class BehaviorTree : MonoBehaviour
     {
         state.distBtwn = Mathf.Abs(Vector2.Distance(state.hero.position, state.boss.position));
         //Debug.Log("AttackCheck, dist between = "+ state.distBtwn);
-        return state.distBtwn <= 3;
+        return state.distBtwn <= 2;
     }
 
     // check to see if hero's square is in danger
