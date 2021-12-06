@@ -29,13 +29,13 @@ public class BossAttacks : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.X))
         {
             currAttack = "SwipeRight";
             inputGiven = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             currAttack = "SwipeLeft";
             inputGiven = true;
@@ -47,13 +47,13 @@ public class BossAttacks : MonoBehaviour
             inputGiven = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.V))
         {
             currAttack = "AOE";
             inputGiven = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             currAttack = "Nothing";
             inputGiven = true;

@@ -4887,7 +4887,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7521948410892084333, guid: 7eaa772152f5a194bb55d91612db4191, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7521948410892084333, guid: 7eaa772152f5a194bb55d91612db4191, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4947,7 +4947,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7521948410892084336, guid: 7eaa772152f5a194bb55d91612db4191, type: 3}
       propertyPath: beamLength
-      value: 20
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 7521948410892084336, guid: 7eaa772152f5a194bb55d91612db4191, type: 3}
       propertyPath: AOERenderer
