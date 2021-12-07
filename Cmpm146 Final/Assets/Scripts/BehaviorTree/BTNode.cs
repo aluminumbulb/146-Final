@@ -172,19 +172,22 @@ public class BTSequence : BTNode
         btq.reorganize(base.gs);
         //Iterate through every node in order
         base.setBeforeValues();
+        Debug.Log("Sequence Start");
         foreach (BTNode node in btq.getPQ())
         {
             //Debug.Log("BT Sequence Executing a Node");
             //Attempt to execute the underlying node
             //return true as soon as a selected node has succeeded
+            Debug.Log("Sequence Checking new Node");
             response = node.execute();
             if (!response)
             {
                 //response = true;
-                //Debug.Log("Sequence Encountered Failure");
+                Debug.Log("Sequence Encountered Failure");
                 break;
             }
         }
+        Debug.Log("Sequence Done");
         //Only update values on successful execution
         if(response){
             base.setAfterValues();

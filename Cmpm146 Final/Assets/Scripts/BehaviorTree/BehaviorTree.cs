@@ -32,7 +32,7 @@ public class BehaviorTree : MonoBehaviour
         root.pushNode(lightAttackBranch);
 
         BTSequence heavyAttackBranch = new BTSequence(state);
-        lightAttackBranch.pushNode(new BTCheck(dodgeCheck, state));
+        heavyAttackBranch.pushNode(new BTCheck(dodgeCheck, state));
         heavyAttackBranch.pushNode(new BTCheck(attackCheck, state));
         heavyAttackBranch.pushNode(new BTAction(heavyAttack, state));
         root.pushNode(heavyAttackBranch);
@@ -142,6 +142,7 @@ public class BehaviorTree : MonoBehaviour
     // attackCheck to see if hero in range for attack
     public bool attackCheck()
     {
+        Debug.Log("Attack Check");
         state.distBtwn = Mathf.Abs(Vector2.Distance(state.hero.position, state.boss.position));
         //Debug.Log("AttackCheck, dist between = "+ state.distBtwn);
         return state.distBtwn <= 2;
@@ -150,9 +151,19 @@ public class BehaviorTree : MonoBehaviour
     // check to see if hero's square is in danger
     public bool dodgeCheck()
     {
+        Debug.Log("Dodge Check");
         // get square player is on
         // is square about to be covered by bullet?
-        return state.BossAtkCheck("Hero", state.bossAtk.currAttack);
+        
+        bool result = state.BossAtkCheck("Hero", state.bossAtk.currAttack);
+         
+        if(!result){
+            print ("Safe");
+        }else{
+            Debug.Log("Behavior Tree: Attack " + state.bossAtk.currAttack + " has struck!");
+        }
+        return !result;
+        //return state.BossAtkCheck("Hero", state.bossAtk.currAttack);
     }
 
     //-----Move Checks-----

@@ -83,9 +83,14 @@ public class GameState : MonoBehaviour
                 currTurn = turn.ACTION;
             }else if(currTurn == turn.ACTION)
             {
+                //Don't perform any action until the hero is ready to make a move
+                while(!bt.ready){
+                    yield return null;
+                }
                 //Debug.Log("Action Turn");
                 //At this phase, we should check the result of the boss' move on the hero
                 if(BossAtkCheck("Hero", bossAtk.currAttack)){
+                    Debug.Log("Game State: Attack " + bossAtk.currAttack + " has struck!");
                     heroControl.heroHit();
                     currBossHealth = prevBossHealth = bossHealth = 100;
                     for(int i = 3; i > 0; i -= 1)
@@ -157,6 +162,4 @@ public class GameState : MonoBehaviour
         float yDiff = hero.position.y - boss.position.y;
         return yDiff;
     }
-
-    
 }
