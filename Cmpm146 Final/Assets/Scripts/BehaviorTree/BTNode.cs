@@ -172,10 +172,9 @@ public class BTSequence : BTNode
         btq.reorganize(base.gs);
         //Iterate through every node in order
         base.setBeforeValues();
-        Debug.Log("Sequence Start");
+        //Debug.Log("Sequence Start");
         foreach (BTNode node in btq.getPQ())
         {
-            //Debug.Log("BT Sequence Executing a Node");
             //Attempt to execute the underlying node
             //return true as soon as a selected node has succeeded
             //Debug.Log("Sequence Checking new Node");
@@ -265,40 +264,3 @@ public class BTStaticSequence : BTNode
         btq.push(node);
     }
 }
-
-/*
-/// <summary>
-/// Similar to actions but they don't change their priority
-/// The idea is to be grouped together in branch structures
-/// </summary>
-public class BTStaticAction : BTNode
-{
-actionDelegate del;
-
-public BTStaticAction(actionDelegate del)
-{
-    this.del = del;
-}
-
-public override bool execute()
-{
-    return del();
-}
-}
-
-public class BTStaticCheck : BTNode
-{
-checkDelegate del;
-
-public BTStaticCheck(checkDelegate del)
-{
-    this.del = del;
-}
-
-public override bool execute()
-{
-    return del();
-}
-}
-*/
-

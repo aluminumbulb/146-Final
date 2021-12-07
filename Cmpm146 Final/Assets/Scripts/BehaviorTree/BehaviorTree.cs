@@ -154,16 +154,7 @@ public class BehaviorTree : MonoBehaviour
         Debug.Log("Dodge Check");
         // get square player is on
         // is square about to be covered by bullet?
-        
-        bool result = state.BossAtkCheck("Hero", state.bossAtk.currAttack);
-         
-        if(!result){
-            print ("Safe");
-        }else{
-            Debug.Log("Behavior Tree: Attack " + state.bossAtk.currAttack + " has struck!");
-        }
-        return !result;
-        //return state.BossAtkCheck("Hero", state.bossAtk.currAttack);
+        return !state.BossAtkCheck("Hero", state.bossAtk.currAttack);
     }
 
     //-----Move Checks-----
@@ -338,27 +329,3 @@ public class BehaviorTree : MonoBehaviour
         return true;
     }
 }
- //Graveyard
-    //This I think is a never true for the time being
-    /*
-    // check to see if boss just attacked
-    public bool bossAttacked()
-    {
-        // did boss just launch an attack?
-        Debug.Log("BossAttack?: " + state.currTurn);
-        return state.currTurn == GameState.turn.BOSS_DECISION;
-    }
-    */
-
-    /*
-    This happens automatically as a form of the tree
-    // move hero out of danger
-    public bool moveToSafety()
-    {
-        Debug.Log("Dodge");
-        // find closest square that is not under attack
-        // move player to that square
-        state.heroMove.movePoint.position += new Vector3(0f, 0f, 0f);
-        return true;
-    }
-*/
