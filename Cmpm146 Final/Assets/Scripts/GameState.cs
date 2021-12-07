@@ -19,6 +19,7 @@ public class GameState : MonoBehaviour
     private HeroControl heroControl;
     private float prevBossHealth, currBossHealth;
     private Vector2 prevHeroPos, currHeroPos;
+    public float dread = 0;
     public float lightDmg = 10;
     public float heavyDmg = 20;
     private BehaviorTree bt;
@@ -79,7 +80,20 @@ public class GameState : MonoBehaviour
             {
                 //Debug.Log("HeroTurn");
                 distBtwn = Vector3.Distance(hero.position, boss.position);
+                //If death is imminant, increase dread
+                if(BossAtkCheck("Hero", bossAtk.currAttack)){
+                    dread = 100;
+                }else{
+                    dread = 0;
+                }
+
                 bt.execute();
+                
+                if(BossAtkCheck("Hero", bossAtk.currAttack)){
+                    dread = 100;
+                }else{
+                    dread = 0;
+                }
                 currTurn = turn.ACTION;
             }else if(currTurn == turn.ACTION)
             {

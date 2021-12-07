@@ -9,12 +9,13 @@ public class BTNode
     public float priority = 0;
     public BTPriorityQueue myQ = null;
     //These floats are used to calculate the average changes for each tracked value
-    float totDeltX = 0, totDeltY = 0, totDeltHealth = 0;
+    float totDeltX = 0, totDeltY = 0, totDeltHealth = 0, totDread = 0;
     public float totalUses = 0;
-    public float aveDeltX = 0, aveDeltY = 0, aveDeltHealth = 0;
+    public float aveDeltX = 0, aveDeltY = 0, aveDeltHealth = 0, aveDeltDread = 0;
     protected GameState gs = null;
     private Vector3 currHeroPos, prevHeroPos;
     private float prevBossHealth, currBossHealth;
+    private float prevDread, currDread;
     //Basic execute should pretty much always be available to any kind of node
 
     //============This is hopefully where we're gunna make the magic happen========================
@@ -28,11 +29,13 @@ public class BTNode
         totDeltX += (currHeroPos.x - prevHeroPos.x);
         totDeltY += (currHeroPos.y - prevHeroPos.y);
         totDeltHealth += (currBossHealth - prevBossHealth);
+        totDread += currDread-prevDread;
 
         //Average used to determine the likely effect of the action
         aveDeltX = totDeltX / totalUses;
         aveDeltY = totDeltY / totalUses;
         aveDeltHealth = totDeltHealth / totalUses;
+        aveDeltDread = totDread/totalUses;
     }
     //=============================================================================================
 
@@ -43,12 +46,14 @@ public class BTNode
     {
         prevHeroPos = gs.hero.position;
         prevBossHealth = gs.bossHealth;
+        prevDread = gs.dread;
     }
 
     protected void setAfterValues()
     {
         currHeroPos = gs.hero.position;
         currBossHealth = gs.bossHealth;
+        currDread = gs.dread;
     }
 
     public virtual bool execute()

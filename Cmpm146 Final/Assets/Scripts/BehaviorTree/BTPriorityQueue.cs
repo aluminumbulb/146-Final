@@ -51,7 +51,11 @@ public class BTPriorityQueue
             //Adding the amount of changes that need to be made with the amound we can change them
                 (Mathf.Abs(gs.transDeltX() + node.aveDeltX)
                 + Mathf.Abs(gs.transDeltY() + node.aveDeltY)
-                + Mathf.Abs(gs.bossHealth + node.aveDeltHealth));
+                + Mathf.Abs(gs.bossHealth + node.aveDeltHealth)
+                //+ Mathf.Abs(gs.dread + node.aveDeltDread)
+            
+                - 10 * Random.value
+                );
             }
         }
         //Taken from: https://answers.unity.com/questions/677070/sorting-a-list-linq.html
